@@ -1,0 +1,130 @@
+<header id="navbar">
+   <div id="navbar-container" class="boxed">
+      <div class="navbar-header">
+         <a href="#" class="navbar-brand" >
+            <img src="./img/australia.png" alt="Aotax Australia" class="brand-icon">
+            <div class="brand-title" id="ui-brandText">
+               <span class="brand-text">AOTAX</span>
+            </div>
+         </a>
+      </div>
+      <div class="navbar-content clearfix">
+         <ul class="nav navbar-top-links pull-left">
+            <li class="tgl-menu-btn" ng-click="collapseSideBar()">
+               <a class="mainnav-toggle" href='javascript:void(0)'>
+               		<i class="demo-pli-view-list"></i>
+               </a>
+            </li>
+            <li class="tgl-menu-btn" ng-click="uiTour()">
+               <a class="mainnav-toggle" href='javascript:void(0)'>
+               		<i class="fa fa-play text-danger"></i>
+               </a>
+            </li>
+         </ul>
+         <ul class="nav navbar-top-links pull-right">
+            <li id="dropdown-user" class="dropdown">
+               <a data-toggle="dropdown" class="dropdown-toggle text-right">
+                  <span class="pull-right">
+                     <img class="img-circle img-xs" src="https://www.gravatar.com/avatar/{{userdetails.avatar}}?d=404" alt="{{userdetails.firstName}} {{userdetails.lastName}}" data-name="{{userdetails.firstName}} {{userdetails.lastName}}" onerror="renderInitial(this);">
+                  </span>
+                  <div class="username hidden-xs">Hi, {{userdetails.firstName}} {{userdetails.lastName}}</div>
+               </a>
+               <div class="dropdown-menu dropdown-menu-right panel-default">
+                  <ul class="head-list">
+                     <li>
+                        <a ng-click="changepassword = !changepassword">
+                        <i class="fa fa-lock"></i> Change Password
+                        </a>
+                     </li>
+                     <li>
+                        <a href="javascript:void(0);" ng-click="navigateTo('RFRL')">
+                        	<i class="fa fa-user"></i> Referrals
+                        </a>
+                     </li>
+                     <li>
+                        <a ng-click="logout()">
+                        <i class="fa fa-sign-out"></i> Logout
+                        </a>
+                     </li>                    
+                  </ul>
+               </div>
+            </li>
+         </ul>
+      </div>
+      <!--================================-->
+      <!--End Navbar Dropdown-->
+   </div>
+</header>
+
+<nav id="mainnav-container" >
+            <div id="mainnav">
+                <div id="mainnav-menu-wrap">
+                    <div class="nano">
+                        <div class="nano-content">
+                            <div id="mainnav-profile" class="mainnav-profile">
+                                <div class="profile-wrap">
+                                    <div class="pad-btm" id="ui-userDetails">
+                                        <img class="img-circle img-md img-border" src="https://www.gravatar.com/avatar/{{userdetails.avatar}}?d=404" 
+                                        	alt="{{userdetails.firstName}} {{userdetails.lastName}}" data-name="{{userdetails.firstName}} {{userdetails.lastName}}"
+                                        	onerror="renderInitial(this);">
+                                        <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
+                                        	<p class="mnp-name">{{userdetails.firstName}} {{userdetails.lastName}}</p>
+                                        	<span class="mnp-desc">{{userdetails.email}}</span><br>
+                                    	</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul id="mainnav-menu" class="list-group" >
+                                <li class="list-divider"></li>                                
+								<li class="list-divider"></li>
+                                <li class="list-header">Menu</li>
+                                <li ng-repeat="lone in levelOne"  ng-class="{'active-link ': model.link == lone.code, 'active':  lone.code == 'RQST'}" id="ui-menuList{{$index}}">
+                                    <a ng-click="model.link = lone.code; navigateTo(lone)" href="javascript:void(0)">
+                                        <i class="{{lone.cls}}"></i>
+                                        <span class="menu-title">
+                                        	<strong>{{labelNames[lone.code]}}</strong>
+                                        </span>
+                                    </a>
+                                    <ul class='collapse' ng-if = "lone.code == 'RQST' " ng-repeat = "request in myRequests | orderBy	: '-financialYear' " ng-class = "model.link == 'RQST' ? 'in' : '' ">
+                                    	<li class='yearBadPadding text-main' ng-show='showFyear(request.financialYear)'>{{request.financialYear}}</li>
+                                    	<li class= 'serviceBadPadding cuspointer' ng-click="model.link = 'RQST'; model.subone = 'HM'; loadGrid(request,'HM','T')">
+                                    		<i class='fa fa-ticket'></i>
+                                    		{{request.serviceName}}
+                                    	</li>
+                                    	<li ng-repeat="ltwo in levelTwo" class ='collapse' ng-class="{'bg-submenu-one': model.subone == ltwo.code,'in' : activeTicekt == request.objectId  }" >
+                                    		<a href='javascript:void(0)' ng-click="model.subone = ltwo.code; loadGrid(request,ltwo.code,'T')" >
+                                        		<i class="{{ltwo.cls}}"></i>
+                                        		<span class="menu-title">
+                                        			<strong >
+                                        			<span ng-if=" ltwo.code == 'HM' ">#{{request.objectId}} - </span>
+                                        			{{labelNames[ltwo.code]}}</strong>
+                                        			
+                                        		</span>
+                                    		</a>
+                                    		<ul class='collapse active' aria-expanded="false" ng-if="ltwo.code == 'TO' " ng-class="model.subone == 'TO' ? 'in' : ''">
+                                    			<li ng-repeat = 'lthree in levelThree'  ng-class="{'bg-submenu-two': model.subtwo == lthree.code  }">
+                                    				<a href='javascript:void(0)' ng-click="model.subtwo = lthree.code;model.subone = 'TO'; loadGrid(request,lthree.code,'TO')" >
+                                        				<i class="{{lthree.cls}}"></i>
+                                        				<span class="menu-title">
+                                        					<strong >
+                                        					{{labelNames[lthree.code]}}
+                                        					</strong>
+                                        				</span>
+                                        				<i class='fa ' ng-class = "completedFroms[lthree.code] ? 'fa-check-square text-success' : 'fa-exclamation text-danger'" ></i>
+                                    				</a>
+                                    			</li>
+                                    		</ul>
+                                    	</li>
+                                    	<li class="list-divider"></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+<changepassword visible="changepassword" logindetails="userdetails"></changepassword>

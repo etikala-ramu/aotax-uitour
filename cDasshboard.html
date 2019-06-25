@@ -1,0 +1,186 @@
+<div class="boxed">
+	<div id="content-container">
+		<div id="page-title">
+			<h6 class="page-header text-overflow pull-left"
+				style="font-size: 1.3em; font-weight: 700;"id="ui-dashboard">
+				<img src='./img/dashboard.png' alt='dashboardImage' class='pad-rgt'>
+				DASHBOARD
+			</h6>
+			<div class="pull-right" style="padding-top: 10px; padding-right: 5px">
+				<button class="btn btn-default" style="font-weight: bold;"
+					data-target="#demo-modal-wo-anim" data-toggle="modal"
+					ng-click="creatTitcketPopup()" id="ui-createService">
+					<i class="fa fa-paper-plane" style="padding-right: 10px;"></i>Create
+					New Service
+				</button>
+			</div>
+		</div>
+		<div id="page-content">
+			<div class="row  ">
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="text-main text-md-left text-info panel-title";id="ui-serviceActions">
+							Manage your Service Requests!<sup ng-click="ticektinfoalert()"
+								class="cuspointer pad-lft" style='font-size: 1.0em'><i
+								class="fa fa-question-circle"></i></sup>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<!-- <div class="bootstrap-table">
+					                <div class="row">
+					                   <div class="pull-right" style="margin: 5px 10px 0px 0px;">
+					                     <i class="demo-pli-repeat-2 icon-lg" ng-click="refreshGridData()"></i>
+					                   </div>
+					               </div> 
+					               <div style="margin-top: 20px;text-transform:uppercase;font-weight: bold;">
+						               <grid options="options" 
+						               		 deleteitems="deleteitems" 
+						               		 edititem="edititem" 
+						               		 totalcount="totalcount"
+						               		 callback-fn="gridRowClickFn(info)">
+						               </grid> 
+					               </div> 
+					         </div> -->
+						<div class="row mar-no">
+							<div ng-repeat="ticket in tickets | orderBy : '-financialYear' "
+								class="  col-md-3 cuspointer" ng-click="openTicket(ticket)" id="ui-serviceRequest{{$index}}">
+								<div
+									class="panel panel-primary panel-colorful media middle pad-all smooth-curve">
+									<div class="media-left">
+										<div class="pad-hor">
+											<i class="fa fa-tag fa-3x"></i>
+										</div>
+									</div>
+									<div class="media-body" id="ui-serviceTicket">
+										<p class="text-2x mar-no text-semibold"># {{
+											ticket.serviceName == 'FBAR' ? ( ticket.requestId ?
+											ticket.requestId :ticket.objectId ) : ticket.objectId }}</p>
+										<!-- <p class="text-2x mar-no text-semibold" ng-show="!(ticket.serviceName == 'FBAR')"># {{ticket.objectId}}</p>
+										 -->
+										<h4 class="mar-no" id="ui-serviceName">{{ticket.serviceName}}</h4>
+										<h4 class="mar-no " id="ui-taxYear">{{ticket.financialYear}}</h4>
+										<p class="mar-no label label-primary" id="ui-ticketStatus">*
+											{{ticket.statusName}}</p>
+										<p class="mar-no label label-primary"
+											ng-show="!(ticket.serviceName == 'FBAR')" id="ui-fileStatus">*
+											{{ticket.fileStatusName}}</p>
+									</div>
+								</div>
+							</div>
+							<div class="row mar-no">
+								<div
+									class="panel smooth-curve  panel-colorful media middle pad-all cuspointer col-md-3"
+									ng-click="creatTitcketPopup()" style="border: 2px dashed">
+									<div class="media-left">
+										<div class="pad-hor">
+											<i class="fa fa-plus fa-3x"></i>
+										</div>
+									</div>
+									<div class="media-body">
+										<h4 class="mar-no">
+											New Service Request<br> <small> (Tax Lodgement)</small>
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="fixed-fluid">
+					<div class="panel ui-referrals">
+							<div class='row'>
+								<div class='col-md-12'>
+									<h3 class="panel-title">
+										<i class="fa fa-bullhorn pad-rgt"></i> Manage Referrals -
+										Invite Friends and Family and Get $10 For Each Paid Referral
+									</h3>
+								</div>
+								<div class='col-md-10' style='padding-left: 63px'>
+									<p>
+										You have referred <strong>{{dataItems.length}}</strong> people
+										so far!
+									</p>
+								</div>
+								<div class=' col-md-10 ' style='padding-left: 63px'>
+									<p>
+										Your Referral Balance is <strong>${{ticket.referalbalance?
+											ticket.referalbalance : "0"}}</strong>
+									</p>
+								</div>
+								<div class="col-md-4" 
+									style='padding-left: 63px !important; padding-bottom: 12px'>
+									<button ng-click='showredeemreferral = !showredeemreferral'
+										class="btn btn-info" id="ui-redeemReferrals">Redeem Now!</button>
+								</div>
+							</div>
+						<div class="panel-body">
+							<div class="row mar-all">
+								<div class="col-md-3" ng-repeat="data in dataItems">
+									<div class="panel widget smooth-curve">
+										<div class="widget-header bg-gray text-center">
+											<h4 class="mar-no pad-top">{{data.email}}</h4>
+										</div>
+										<div class="widget-body">
+											<img alt="Profile Picture"
+												class="widget-img img-circle img-border-light"
+												src="https://www.gravatar.com/avatar/{{data.avatar}}"
+												alt="{{data.email}}" data-name="{{data.email}}"
+												onerror="renderInitial(this);">
+											<div class="list-group bg-trans mar-no">
+												<div class="list-group-item list-item-sm">
+													<span class="label label-default pull-right">{{data.createdDate
+														| date }}</span> Invited Date
+												</div>
+												<div class="list-group-item list-item-sm">
+													<span class="label label-default pull-right">{{!data.status
+														? "INVITED" : data.status}}</span> status
+												</div>
+												<div class="list-group-item list-item-sm">
+													<span class="label label-default pull-right">{{!data.signedUpDate
+														? '-' : data.signedUpDate}}</span> Signed Up date
+												</div>
+												<div class="list-group-item list-item-sm">
+													<span class="label label-default pull-right">{{data.amountCredited
+														? '$' + data.amountCredited : '-'}}</span> Earning
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class='row mar-all'>
+									<div
+										class="panel  smooth-curve panel-colorful media middle pad-all cuspointer col-md-3"
+										ng-click="invitemore()" style="border: 2px dashed">
+										<div class="media-left">
+											<div class="pad-hor">
+												<i class="fa fa-paper-plane fa-3x"></i>
+											</div>
+										</div>
+										<div class="media-body">
+											<h4 class="mar-no" id="ui-inviteMore">
+												Invite More<br> <small> (Earn $10 for each paid
+													referral.)</small>
+											</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<modalpopup visible="showModal" data="tktData"></modalpopup>
+			<managerinfo visible="showManagerInfo" infodata="openmanagerinfo"></managerinfo>
+			<uploaddocuments visible="showDocumentInfo" ticketid="tktIds"
+				loginuser="userdetails"></uploaddocuments>
+			<redeemreferral visible="showredeemreferral"></redeemreferral>
+			<paymentsuccess visible="showPaymentSuccessModal" data="data"></paymentsuccess>
+
+		</div>
+	</div>
+</div>
+
+

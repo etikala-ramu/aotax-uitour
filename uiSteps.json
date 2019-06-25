@@ -1,0 +1,86 @@
+{
+	'clinetSteps' : [
+		{
+			element :"#ui-menuList0",
+			title : "menu list",
+			content : "menu list"
+		},
+		{
+			element :"#ui-userDetails",
+			title : "your details",
+			content : "Hi,your details"
+		},
+		{
+			element :"#ui-brandText",
+			title : "brand",
+			content : "Hi,this is the brand logo"
+		},
+		{
+			element :"#ui-taxYear",
+			title : "current tax financial year",
+			content : "Hi,your current tax financial status"
+		},
+		{
+			element :"#ui-fileStatus",
+			title : "current file status",
+			content : "Hi,your current file status"
+		},
+		{
+			element :"#ui-ticketStatus",
+			title : "current ticket status",
+			content : "Hi,your current ticket status"
+		},
+		{
+			element :"#ui-serviceName",
+			title : "tax ticket status",
+			content : "Hi,your tax ticket status"
+		},
+		{
+			element :"#ui-inviteMore",
+			title : "invite your friends,family etc",
+			content : "Hi Invite More"
+		},
+		{
+			element : "#ui-redeemReferrals",
+			title : "redeem amount made by referring",
+			content: "Hi,redeem amount made by referring"
+		},
+		{
+			element : "#ui-serviceTicket",
+			title : "new ticket creation",
+			content : "Hi,create new ticket"
+		}
+		{
+			element : "#ui-createService",
+			title : "create new sevice",
+			content : "Hi,create your new service"
+		},
+		{
+		   element : "#ui-serviceActions",
+		   title : "performing actions",
+		   content : "performing actions like referrals"
+		},
+		{
+		   element:"#ui-dashboard",
+		   title :"This is your Dashboard",
+		   content : "Hi,This is your Dashboard"
+		},
+			{
+				element: "#ui-serviceRequest0",
+				title: "Service Requests",
+				content: "Your Service Request Button!"
+			},
+			{
+				element : ".ui-referrals",
+				title : "My Referrals Panel",
+				content : "Find all Information Related to Your Referrals"
+			}
+		],
+		'userSteps' : [
+			{
+				element: "#DASH",
+				title: "My Dashboard",
+				content: "Quickly go to dashboard from any screen!"
+			},
+		]
+}

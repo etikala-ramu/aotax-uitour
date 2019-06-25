@@ -1,0 +1,1381 @@
+<div class="boxed client-page">
+
+       <div id="content-container">
+
+			<div id="page-content" style="padding-top: 0px;">
+                <!-- <div style="display: flex;">
+                	<h3 style="flex:1;">TICKET #{{ticketDetails.objectId}} - {{ticketDetails.serviceName}}</h3>
+                	<i class="fa fa-refresh refresh-icon" ng-click="refreshDetails()"></i>
+                	<tickettimelogs config-details="logConfigDetails"/>
+                </div> -->
+                
+                <div class="row">
+					<div class="col-md-6">
+						<h3 >TICKET #{{ticketDetails.objectId}} - {{ticketDetails.serviceName}} - {{ticketDetails.financialYear}}</h3>
+					</div>
+					<div class="col-md-3">
+						<h3 class='text-right text-success'>{{ticketDetails.statusName}}</h3>
+					</div>
+					<div class="col-md-3">
+						<h3 class='text-right text-warning'>{{ticketDetails.fileStatusName}}</h3>
+					</div>
+                </div>
+                
+				<div class="row">
+						<div class="tab-base">
+							<!-- <ul class="nav nav-tabs">
+								<li ng-class="{'active-tab': activeTab == 'HM'}">
+									<a data-toggle="tab" ng-click="changeTab('HM')" aria-expanded="true">
+										<i class="fa fa-home" style="font-size: 16px;"></i>
+									</a>
+								</li>
+								<li ng-class="{'active-tab': activeTab == 'MS'}">
+				                    <a data-toggle="tab" ng-click="changeTab('MS')" aria-expanded="false">Messages</a>
+				                </li>
+				                <li ng-class="{'active-tab': activeTab === 'TO'}">
+				                    <a data-toggle="tab" ng-click="changeTab('TO')" aria-expanded="false">Tax Organizer</a>
+				                </li>
+				                <li ng-class="{'active-tab': activeTab == 'MD'}">
+				                    <a data-toggle="tab" ng-click="changeTab('MD')" aria-expanded="true">My Documents</a>
+				                </li>
+				                <li ng-class="{'active-tab': activeTab == 'TD'}">
+				                    <a data-toggle="tab" ng-click="changeTab('TD')" aria-expanded="false">Tax Drafts</a>
+				                </li>
+				                
+				                <li ng-class="{'active-tab': activeTab === 'PY'}">
+				                    <a data-toggle="tab" ng-click="changeTab('PY')" aria-expanded="false">Tax Invoice</a>
+				                </li>
+				                <li ng-class="{'active-tab': activeTab === 'FD'}" ng-if="(reviseddraftsList.length > 0) || (ticketDetails.filingType 
+				                			&& (ticketDetails.filingType == 'E' || ticketDetails.filingType == 'P' || ticketDetails.filingType == 'D'))">
+				                    <a data-toggle="tab" ng-click="changeTab('FD')" aria-expanded="false">Final Documents</a>
+				                </li>
+				                
+				                
+				                
+				                <li style="float: right; padding-top: 9px; color: #FFF;">
+				                	<label><img src='./img/refresh.png' alt='refresh image' ng-click="refreshDetails()" 
+				                	class='pad-rgt' data-toggle="tooltip" data-original-title="Refresh">
+		                            	</label>
+				                	<i class="fa fa-refresh refresh-icon" ng-click="refreshDetails()" data-toggle="tooltip" data-original-title="Refresh"></i> 
+				                </li>
+				                <li style="float: right; padding-top: 9px; color: #FFF; margin-right: 10px;" data-toggle="tooltip" data-original-title="Ticket History">
+				                	<tickettimelogs config-details="logConfigDetails"/>
+				                </li>
+				                <li style="float: right; padding-top: 9px; color: red; margin-right: 10px;">				                   
+		                            <i 	style="font-size: 20px;" class="fa fa-flag" 
+		                            	ng-click="showEscalations = !showEscalations" 
+		                            	data-toggle="tooltip" data-original-title="Escalations">
+		                            </i>
+		                            <label><img src='./img/escalation.png' alt='escalation image' ng-click="showEscalations = !showEscalations" 
+		                            	data-toggle="tooltip" data-original-title="Escalations">
+		                            	</label>
+				                </li>
+				            </ul> -->
+							<div class="tab-content">
+								<div class="tab-pane fade row"
+								ng-class="{'active in': activeTab == 'HM' }">
+								<div class="row">
+									<div class="row pad-lft">
+										<div class="col-md-12">
+											<ul class="nav nav-wizard progress-steps text-muted">
+												<li>
+													<div class="fa fa-2x"
+														ng-class="getProSteps('FTR')? 'fa-check-circle-o stepsuccess' : 'fa-exclamation-triangle font-em16'"></div>
+												</li>
+												<li class="labels" data-toggle="tooltip"
+													data-original-title="Status Indicators"
+													data-placement="top"><label class="text-bold"
+													ng-class="{stepsuccess: getProSteps('FTR')}">Fill
+														Tax Organizer</label></li>
+												<li>
+													<div class="fa fa-2x"
+														ng-class="getProSteps('UDS')? 'fa-check-circle-o stepsuccess' : 'fa-exclamation-triangle font-em16'"></div>
+												</li>
+												<li class="labels" data-toggle="tooltip"
+													data-original-title="Status Indicators"
+													data-placement="top"><label class="text-bold"
+													ng-class="{stepsuccess: getProSteps('UDS')}">Upload
+														Documents</label></li>
+												<li>
+													<div class="fa fa-2x"
+														ng-class="getProSteps('RTD')? 'fa-check-circle-o stepsuccess' : 'fa-exclamation-triangle font-em16'"></div>
+												</li>
+												<li class="labels" data-toggle="tooltip"
+													data-original-title="Status Indicators"
+													data-placement="top"><label class="text-bold"
+													ng-class="{stepsuccess: getProSteps('RTD')}">Review
+														Tax Draft</label></li>
+												<li>
+													<div class="fa fa-2x"
+														ng-class="getProSteps('PYM')? 'fa-check-circle-o stepsuccess' : 'fa-exclamation-triangle font-em16'"></div>
+												</li>
+												<li class="labels" data-toggle="tooltip"
+													data-original-title="Status Indicators"
+													data-placement="top"><label class="text-bold"
+													ng-class="{stepsuccess: getProSteps('PYM')}">Payment
+														Made</label></li>
+												<li>
+													<div class="fa fa-2x"
+														ng-class="getProSteps('FCM')? 'fa-check-circle-o stepsuccess' : 'fa-exclamation-triangle font-em16'"></div>
+												</li>
+												<li class="labels" data-toggle="tooltip"
+													data-original-title="Status Indicators"
+													data-placement="top"><label class="text-bold"
+													ng-class="{stepsuccess: getProSteps('FCM')}">Filing
+														Completed</label></li>
+											</ul>
+										</div>
+									</div>
+									<div class='row pad-all'>
+										<div class="col-md-9">
+											<div class="panel smooth-curve">
+												<div class="panel-heading bg-gray">
+													<h4 class=panel-title>
+														<i class='fa fa-file pad-rgt'></i>Digital Tax
+														Organizer({{completedOrganizerForms.totalfilled}}/6)
+													</h4>
+												</div>
+												<div class='panel-body'>
+													<div class=row>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve"
+																ng-click="goToOrganizer('PSIO')">
+																<div class="panel-body text-center "
+																	ng-class="taxorganizer.completedFroms.PSIO ? 'bg-success' :'bg-gray'">
+																	<i class="fa fa-check fa-4x"
+																		ng-if="taxorganizer.completedFroms.PSIO"></i> <img
+																		src="./img/personal_info.png" class="icon-image"
+																		ng-if="!taxorganizer.completedFroms.PSIO">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">Personal
+																		Info</p>
+																</div>
+															</div>
+														</div>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve"
+																ng-click="goToOrganizer('RSIO')">
+																<div class="panel-body text-center "
+																	ng-class="taxorganizer.completedFroms.RSIO ? 'bg-success' :'bg-gray'">
+																	<i class="fa fa-check fa-4x"
+																		ng-if="taxorganizer.completedFroms.RSIO"></i> <img
+																		src="./img/residence_info.png" class="icon-image"
+																		ng-if="!taxorganizer.completedFroms.RSIO">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">Residential
+																		Info</p>
+																</div>
+															</div>
+														</div>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve"
+																ng-click="goToOrganizer('EPIO')">
+																<div class="panel-body text-center "
+																	ng-class="taxorganizer.completedFroms.EPIO ? 'bg-success' :'bg-gray'">
+																	<i class="fa fa-check fa-4x"
+																		ng-if="taxorganizer.completedFroms.EPIO"></i> <img
+																		src="./img/employment_info.png" class="icon-image"
+																		ng-if="!taxorganizer.completedFroms.EPIO">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">Employment
+																		Info</p>
+																</div>
+															</div>
+														</div>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve"
+																ng-click="goToOrganizer('EXIO')">
+																<div class="panel-body text-center "
+																	ng-class="taxorganizer.completedFroms.EXIO ? 'bg-success' :'bg-gray'">
+																	<i class="fa fa-check fa-4x"
+																		ng-if="taxorganizer.completedFroms.EXIO"></i> <img
+																		src="./img/expenses_info.png" class="icon-image"
+																		ng-if="!taxorganizer.completedFroms.EXIO">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">Expenses
+																		Info</p>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class='row'>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve "
+																ng-click="goToOrganizer('INIO')">
+																<div class="panel-body text-center "
+																	ng-class="taxorganizer.completedFroms.INIO ? 'bg-success' :'bg-gray'">
+																	<i class="fa fa-check fa-4x"
+																		ng-if="taxorganizer.completedFroms.INIO"></i> <img
+																		src="./img/income_info.png" class="icon-image"
+																		ng-if="!taxorganizer.completedFroms.INIO">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">Income
+																		Info</p>
+																</div>
+															</div>
+														</div>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve"
+																ng-click="goToOrganizer('BKIO')">
+																<div class="panel-body text-center "
+																	ng-class="taxorganizer.completedFroms.BKIO ? 'bg-success' :'bg-gray'">
+																	<i class="fa fa-check fa-4x"
+																		ng-if="taxorganizer.completedFroms.BKIO"></i> <img
+																		src="./img/bank_info.png" class="icon-image"
+																		ng-if="!taxorganizer.completedFroms.BKIO">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">Bank
+																		Info</p>
+																</div>
+															</div>
+														</div>
+														<div class='col-md-3 '>
+															<div class="panel cuspointer smooth-curve"
+																ng-click="changeTab('MD')">
+																<div class="panel-body text-center bg-gray">
+																	 <img
+																		src="./img/documents.png" class="icon-image">
+																</div>
+																<div class="pad-all text-center fixed-height-bottom">
+																	<p class="text-semibold text-lg mar-no text-main">{{ticketDetails.financialYear}} Documents</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class='row'>
+											<div class="col-md-3">
+												<div class="panel widget smooth-curve">
+													<div class="widget-header bg-gray text-center"
+														style="overflow: visible;">
+														<div class="row">
+															<div class="col-lg-12">
+																<a href="javascript:void(0)" class="pull-right pad-lft"
+																	ng-disabled="ticketDetails.accountManager ? false: true"
+																	ng-click="showRequestCallback = !showRequestCallback"
+																	data-toggle="tooltip" title="Request a Callback"> <i
+																	class="fa fa-headphones  "></i>
+																</a> 
+															</div>
+														</div>
+														<h4 class="mar-no pad-top">{{ticketDetails.accountManager
+															? ticketDetails.accountManagerName : 'Will Be Assigned
+															Soon' }}</h4>
+													</div>
+													<div class="widget-body">
+														<img alt="Profile Picture"
+															class="widget-img img-circle img-border-light"
+															src="https://www.gravatar.com/avatar/{{ticketDetails.accountManager ? ticketDetails.accountManager.avatar : '123'}}?d=404"
+															onerror="renderInitial(this);"
+															data-name="{{ticketDetails.accountManager ? ticketDetails.accountManagerName : 'NA'}}">
+														<div class="list-group bg-trans mar-no">
+															<div class='row' ng-if="ticketDetails.accountManager">
+																<div class="list-group-item list-item-sm">Your
+																	Customer Responsibility Officer is
+																	{{ticketDetails.accountManagerName}}. You can reach him
+																	on +1-888-MY-AOTAX on extension
+																	{{ticketDetails.accountManager.extn}}.</div>
+															</div>
+															<div class="list-group-item list-item-sm ">
+																<button class='btn btn-warning'
+																		ng-disabled="ticketDetails.accountManager ? false: true"
+																		ng-click="showRequestCallback = !showRequestCallback"
+																		data-toggle="tooltip" title="Request a Callback">Request
+																		Callback</button>
+															</div>
+															<div class="list-group-item list-item-sm ">
+																<button class='btn btn-warning'
+																	ng-disabled="ticketDetails.accountManager ? false: true"
+																	ng-click="changeTab('MS')" data-toggle="tooltip"
+																	title="Ask a Query">Ask Query</button>
+															</div>
+														</div>
+
+														<div class="list-group-item list-item-sm"
+															ng-if="!ticketDetails.accountManager">Your Customer
+															Responsibility Officer will be assigned soon</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="row">
+									<div class="col-md-11  pad-all mar-all scroll-div">
+										<tickettimelogs config-details="logConfigDetails"
+											role="client" view="full" type="TO"></tickettimelogs>
+									</div>
+								</div> -->
+							</div>
+				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'MD' }">
+				                	 <div class="panel">
+									    <div class="panel-heading">
+									        <h3 class="panel-title">Uploaded Documents</h3>
+									    </div>
+									    <div class="panel-body">
+									    	<div class="alert {{isSuccess}}" ng-show="responcemsg != null">{{responcemsg}}</div>
+									    	<!-- <form class="form-horizontal" ng-submit="uploadFile()">
+							                	<div class="form-group" ng-repeat="item in documentsList">
+							                        <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{item.titleName}} :</label>
+							                        <div class="col-sm-9" ng-show="(isUploadDocs[$index] || item.fileId == null || item.fileName == null)">
+							                        	<input type="file" ng-if="item.titleName != 'Tax Organizer'" class="form-control filecontent{{$index}}" file-model="{{item.fileId}}" file-title="{{item.titleId}}" onchange="angular.element(this).scope().fileNameChanged(this)" />
+							                        	<div ng-if="item.titleName == 'Tax Organizer'" style="margin-top: 8px;">Your tax Organizer will be verified by your account manager.</div>
+							                        </div>
+							                        <div class="col-sm-9" ng-show="!isUploadDocs[$index] && item.fileId != null && item.fileName != null" style="direction: flex;">
+							                        	<div style="flex:1;">
+							                        	  <a class="col-sm-9 btn-link uploadfilelink" ng-click="downloadFile(item)" ng-if="item.titleName != 'Tax Organizer'">{{item.fileName}}</a>
+							                        	  <a class="col-sm-9 btn-link uploadfilelink" ng-click="downloadFile(item,null,true)" ng-if="item.titleName == 'Tax Organizer'">{{item.cloudfileName}}</a>
+							                        	</div>
+							                        	<div class="pull-right doc-edit">
+							                        		<i class="fa fa-trash-o" ng-show="toShowDelete" ng-click="deleteFile($index, item)"></i>
+							                        	</div>
+							                        </div>
+							                    </div>
+								            </form> -->
+								            <div class="col-sm-12 mar-btm">
+								            	<div class="col-sm-8"></div>
+								            	<div class="col-sm-4"><label style="font-size:1em; padding: 8px;" class="label label-info pull-right">UPLOADED FILE COUNT: {{filesCount}}</label></div>
+								            </div>
+								            <table class="table table-bordered">
+							                	<thead>
+							                		<th style="width:200px;">File Name</th>
+							                		<th>Uploaded File</th>
+							                		<th style="width: 230px">Action's</th>
+							                	</thead>
+							                	<tbody>
+							                		<tr ng-repeat="item in documentsList" ng-if="!(item.titleName == 'Tax Organizer' && isNewUserForTO())">
+							                			<td>
+							                				<label class="control-label" for="demo-hor-inputemail">{{item.titleName}} :</label>
+							                			</td>
+							                			<td>
+							                				<div class="col-sm-9" ng-show="(isUploadDocs[$index] || item.fileId == null || item.fileName == null)">
+									                        	<input type="file" ng-if="item.titleName != 'Tax Organizer'" class="form-control filecontent{{$index}}" file-model="{{item.fileId}}" file-title="{{item.titleId}}" name="docsFiles" onchange="angular.element(this).scope().fileNameChanged(this)" />
+									                        	<div ng-if="item.titleName == 'Tax Organizer'" style="margin-top: 8px;">Your tax Organizer will be verified by your account manager.</div>
+									                        </div>
+									                        <div class="col-sm-9" ng-show="!isUploadDocs[$index] && item.fileId != null && item.fileName != null" style="direction: flex;">
+									                        	  <a class="col-sm-9 btn-link uploadfilelink" ng-click="downloadFile(item)" ng-if="item.titleName != 'Tax Organizer'">{{item.fileName}}</a>
+									                        	  <a class="col-sm-9 btn-link uploadfilelink" ng-click="downloadFile(item,null,true)" ng-if="item.titleName == 'Tax Organizer'">{{item.cloudfileName}}</a>
+									                        </div>
+							                			</td>
+							                			<td>
+							                				<div class="pull-left" ng-show="!isUploadDocs[$index] && item.fileId != null && item.fileName != null">
+								                        		<!-- <i class="fa fa-trash-o" ng-show="toShowDelete" ng-click="deleteFile($index, item)"></i> -->
+								                        		<button class="btn btn-danger" ng-show="toShowDelete" ng-click="deleteFile($index, item)">Delete File</button>
+								                        	</div>
+								                        	<!-- <button class="btn btn-info pull-right" >Add comments</button>
+								                        	<span class="infoiconstyle" ng-show="item.fileName || item.cloudfileName">
+								            					<button class="btn btn-info pull-right" ng-click="showDocTooltip[$index] = !showDocTooltip[$index]">Add comments</button>
+								            					<div class="panel infopopup addcoments" ng-show="showDocTooltip[$index]">
+																	<div style="display: flow-root;">
+																		<i class="fa fa-close pull-right" ng-click="showDocTooltip[$index] = !showDocTooltip[$index]" ></i>
+																	</div>
+																	<div style="display: flow-root;">
+																		<div dynamichtml="globalMethods.addCommentsToDocs(item, $index)" ></div>
+																	</div>
+																</div>
+								            				</span> -->
+							                			</td>
+							                		</tr>
+							                	</tbody>
+						                	</table>
+									    </div>
+									 </div>
+				                </div>
+				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'TD' }">
+				                	<div class="panel">
+									    <div class="panel-heading">
+									        <h3 class="panel-title">Tax Draft Information</h3>
+									    </div>
+									    <div class="panel-body">
+									    	<div class="col-sm-12 draftinfo-section">
+									    		<!-- <div class="form-group">
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label text-bold">Filing Status</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: {{draftLabels.filingStatus[draftinfo.filingStatus]}}.</label>
+							                    	</div>
+							                    </div> -->
+							                   <!--  <div class="form-group" ng-show="draftinfo.filingStatus == 'separate'">
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label text-bold">Spouse's SSN and Full name</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: {{draftinfo.spouseSSN}}</label>
+							                    	</div>
+							                    </div> -->
+							                    <!-- <div class="form-group" ng-show="draftinfo.filingStatus == 'headHousehold'">
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label text-bold">Qualifying person name</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: {{draftinfo.headHouseholdName}}</label>
+							                    	</div>
+							                    </div> -->
+							                    <div class="form-group">
+							                    	<div class="col-sm-12">
+							                    		<label class="control-label text-bold">Filing Type</label>
+							                    	</div>
+							                    </div>
+							                    <!-- <div class="form-group">
+							                    	<div class="col-sm-1"></div>
+							                    	<div class="col-sm-5">
+							                    		<label class="control-label">Resident: 1040 / 1040 NR</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: {{draftLabels.resident[draftinfo.resident]}}</label>
+							                    	</div>
+							                    </div> -->
+							                    <div class="form-group">
+							                    	<div class="col-sm-1"></div>
+							                    	<div class="col-sm-5">
+							                    		<label class="control-label">Simple / Complex</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: {{draftLabels.standard[draftinfo.standard]}}</label>
+							                    	</div>
+							                    </div>
+							                    <!-- <div class="form-group">
+							                    	<div class="col-sm-1"></div>
+							                    	<div class="col-sm-5">
+							                    		<label class="control-label">E-Filing / Paper Filing</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: {{draftLabels.filingType[draftinfo.filingType]}}</label>
+							                    	</div>
+							                    </div> -->
+							                    <!-- <div class="form-group">
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label text-bold">Adjusted Gross Income</label>
+							                    	</div>
+							                    	<div class="col-sm-6">
+							                    		<label class="control-label">: ${{draftinfo.agi}}</label>
+							                    	</div>
+							                    </div> -->
+							                    <div class="form-group">
+							                    	<div class="col-sm-4">
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label text-bold">Refund Amount</label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label text-bold">OWE Amount</label>
+							                    	</div>
+							                    </div>
+							                    
+							                    <div class="form-group">
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label text-bold">2018 Individual Tax Returns </label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label">${{draftinfo.federal.refund}}</label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label">${{draftinfo.federal.owe}}</label>
+							                    	</div>
+							                    </div>
+							                    
+							                    <!-- <div class="form-group" ng-repeat="stateInfo in draftinfo.stateInfo">
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label text-bold">{{stateInfo.state}} </label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label">${{stateInfo.refund}}</label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label">${{stateInfo.owe}}</label>
+							                    	</div>
+							                    </div> -->
+							                    
+							                    <!-- <div class="form-group">
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label text-bold">Other </label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label">${{draftinfo.other.refund}}</label>
+							                    	</div>
+							                    	<div class="col-sm-4">
+							                    		<label class="control-label">${{draftinfo.other.owe}}</label>
+							                    	</div>
+							                    </div> -->
+									    	</div>
+									    	<div class="col-sm-12 form-group">
+									    		<div class="col-sm-12">
+									    		<div class="panel-group accordion" style="margin-bottom: 10px;" ng-show="draftinfo.objectId != null && draftinfo.terms != null">
+							              			<div class="panel">
+								              			<div class="panel-heading draft-collapse-tabs">
+										                    <h4 class="panel-title">
+										                        <a href="javascript:void(0);">Annexure</a>
+										                    </h4>
+										                </div>
+							              			</div>
+							              		</div>
+							              		<div class="draft-list-info">
+								                    <div ng-show="draftinfo.objectId != null && draftinfo.terms != null">
+														<table class="table table-bordered">
+															<tr>
+																<td>Terms and Conditions</td>
+																<td><a class="btn-link uploadfilelink" ng-click="downloadFile(draftinfo.terms, 'TERMS')">{{draftinfo.terms.fileName}}</a></td>
+															</tr>
+														</table>
+													</div>
+							              		</div>
+										    		<div class="panel-group accordion" style="margin-bottom: 10px;">
+								              			<div class="panel">
+									              			<div class="panel-heading draft-collapse-tabs">
+											                    <h4 class="panel-title">
+											                        <a href="javascript:void(0);" class='pull-left'>Tax Draft Files</a>
+											                       
+               							<a href='https://youtu.be/_JRcgK5yPxA' target='blank' class='pull-right'><span class="btn btn-sm btn-info" style="font-weight: bold;"  >
+               							<i class="fa fa-youtube-play" style="padding-right:10px;"></i>How to Review?
+              							</span></a> 
+						          
+											                    </h4>
+											                </div>
+								              			</div>
+								              		</div>
+									    			<div class="draft-list-info">
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																	<th>Tax Draft</th>
+																	<th>Status</th>
+																	<th>Message</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="item in draftDocumentsList">
+																	<td >
+																		<a class="btn-link uploadfilelink" ng-click="downloadFile(item, 'D')">{{item.taxFile.fileName}}</a>
+																	</td>
+																	<td>
+																		<span class="label label-danger pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'R'">Rejected</span>
+								            							<span class="label label-warning pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'W'">Waiting for Approval</span>
+								            							<span class="label label-success pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'A'">Approved Draft</span>
+																	</td>
+																	<td>
+											            				<span class="infoiconstyle">
+											            					<i class="fa fa-envelope" ng-show="item.accepted == 'R'" ng-click="showTooltio[$index] = !showTooltio[$index]"></i>
+											            					<div class="panel infopopup" ng-show="showTooltio[$index]">
+																				<div ><i class="fa fa-close pull-right" ng-click="showTooltio[$index] = !showTooltio[$index]" ></i></div>
+																				<div dynamichtml="globalMethods.getRejectInfoComments(item)" ></div>
+																			</div>
+											            				</span>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+							            			<!-- <div class="form-group" style="height: 30px; clear:both;" ng-repeat="item in draftDocumentsList">
+								            			<div class="col-sm-6">
+								            				<a class="btn-link uploadfilelink" ng-click="downloadFile(item)">{{item.taxFile.fileName}}</a>
+								            			</div>
+								            			<div class="col-sm-6" >
+								            				<span class="label label-danger pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'R'">Rejected</span>
+								            				<span class="label label-warning pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'W'">Waiting for Approve</span>
+								            				<span class="label label-success pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'A'">Approved Draft</span>
+								            				
+								            				<span class="pull-right">${{item.amount}}</span>
+								            				<i class="pull-right fa fa-info infoiconstyle" ng-show="item.accepted == 'R'" ng-click="showTooltio[$index] = !showTooltio[$index]"></i>
+	            											<div class="panel infopopup" ng-show="showTooltio[$index]">
+	            												<div ><i class="fa fa-close pull-right" ng-click="showTooltio[$index] = !showTooltio[$index]" ></i></div>
+	            												<div dynamichtml="globalMethods.getRejectInfoComments(item)" ></div>
+	            											</div>
+								            				
+								            			</div>
+								            		</div> -->
+								            		<!-- <div ng-show="rejectreson" class="form-group" ng-class="{'has-error': rejectReason.length < 1}">
+								            			<textarea class="form-control" style="margin: 8px;" placeholder="Please provide reason for rejection." ng-model="rejectReason" ></textarea>
+								            		</div> -->
+							           			</div>
+							           			
+							           			<div class="col-sm-12" ng-show="proccessDraft && !rejectreson">
+    												<div class="pad-all panel-bordered-danger">
+									                    <p class="text-main text-semibold">I Got My Draft, What Next?</p>
+									                    <div class="mar-top mar-btm">If you are clear with the calculations on the attached Tax Return Draft, please click APPROVE FOR FILING button and proceed for Payment of your Tax Invoice.</div>
+									                    <div class="mar-top mar-btm">If you need any CLARIFICATIONS / CORRECTIONS on your Tax Return Draft, please reach out to Your Tax Consultant on below coordinates:</div>
+									                    <ul>
+									                    	<!-- <li>Tax Consultant Name: XXXXX</li>
+									                    	<li>Contact: 1-888-MY AOTAX/1-888-69 26829 Ext 1XYZ</li> -->
+									                    </ul>
+									                </div>
+    											</div>						           			
+									    	</div>
+									    </div>
+									    <div class="panel-footer" ng-show="proccessDraft != ''">
+									    	<div class="form-group" style="height: 20px;">
+										    	<div class="col-sm-12" ng-show="proccessDraft && !rejectreson">
+									                 <button class="btn btn-danger pull-right between-space" ng-click="rejectionMethod()" >Request Changes</button>
+									           	   	 <button class="btn btn-success pull-right between-space" ng-click="beforeSelectedDraft($index, item, 'A')">Approve for Filing</button>
+							           			</div>
+							           			<div class="col-sm-12" ng-show="rejectreson">
+							           				<button class="btn btn-mint pull-right between-space" ng-click="selectedDraft($index, item, 'R')" ng-disabled="rejectReason.length < 1" >Request Changes</button>
+							           				<button class="btn btn-default pull-right between-space" ng-click="rejectionMethod()">Cancel</button>
+							           			</div>
+						           			</div>
+									    </div>
+									 </div>
+				                </div>
+				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'MS' }">
+					                <div class="panel">
+									    <div class="panel-heading">
+									        <h3 class="panel-title">Compose New Message / Ask a Query</h3>
+									    </div>
+									    <div class="panel-body">					    			
+									        <textarea id="template_composer" rows="5" placeholder="Template" ng-model="mailtemplate" class="form-control required">
+									        </textarea>    
+											<div class="col-md-12 pad-no">
+												<div class="pull-left">
+													<span class="pull-left btn btn-primary btn-file" ng-if="false">
+							                        	<i class="fa fa-paperclip" aria-hidden="true"></i> Attachments <input type="file">
+							                        </span>
+							                       <!--  <span class="pull-left btn btn-primary mar-lft" ng-click="toggleCCEmails = !toggleCCEmails;">
+							                        	<i class="fa fa-envelope" aria-hidden="true"></i> CC Emails
+							                        </span>
+							                        <span class="badge badge-danger cc_mail_position" ng-if="countCCEmails > 0">{{countCCEmails}}</span> -->
+												</div>
+												<div class="pull-right">
+													<button class="btn btn-info" ng-click="messageReplay()"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+												</div>
+											</div>
+											<div class="col-md-12 pad-no" style="margin-top: 10px;" ng-show="toggleCCEmails">
+												<input type="text" class="form-control" placeholder="Add CC Email" value="{{ticketDetails.ccEmail}}" data-role="tagsinput" />
+											</div>
+									    </div>
+									</div>
+				                
+					                <div class="panel-group accordion">
+										<div class="panel" ng-repeat="mail in mailList track by $index">			
+							                <div class="panel-heading {{mail.clientMail ? '' : 'bg-whitesmoke'}}" ng-click="setActiveMail($index)">
+							                   <div class="panel-control mar-top">
+                    								<span class="label label-default label label-primary" ng-if="mail.type == 'Q'">Query</span>
+                    								<span class="label label-default label label-warning" ng-if="mail.type== 'E'">Escalation</span>
+				            					</div>
+							                    <h4 class="panel-title">
+							                        <a href="javascript:void(0);" title="{{mail.created | formatDate}}">{{mail.label}} {{mail.created | timeago}}</a>
+							                    </h4>
+							                </div>			
+							                <div class="panel-collapse collapse mail-body" ng-class="{in: activeCon == $index}">
+							                    <div class="panel-body">
+							                    	<div dynamichtml="mail.htmlContent" type="{{mail.type}}" callBackRequestTime="{{mail.callBackRequestTime}}" callBackTimezone="{{mail.callBackTimezone}}"></div>
+							                    </div>
+							                </div>
+							            </div>       
+									</div>
+				                </div>
+				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'PY' }">
+				                	<div ng-if="invoice == null">Invoice not created yet.</div>
+				                	<div class="panel" ng-if="invoice != null">
+									    <div class="panel-body">
+									        <div class="media-block text-left">
+									            <div class="media-left" style="white-space:nowrap">
+									                <div class="invoice-logo">
+									                    <div class="media-left">
+									                        <img src="/login/img/ao-tax-logo-website-80-height.png" width="45px">
+									                    </div>
+									                    <div class="media-body">
+									                        <h4 class="h3 mar-no">Advantage One Tax Consulting, Inc.</h4>
+									                        <small>20610 Quarterpath Trace Circle,<br>Sterling VA 20165.</small>
+									                    </div>
+									                </div>
+									            </div>
+									            <div class="media-body text-right">
+									                <h3 class="h1 text-uppercase text-normal mar-no">INVOICE</h3>
+									            </div>
+									        </div>
+									        <hr class="new-section-sm bord-no">
+									        <div class="row">
+									            <div class="col-xs-6 text-left">
+									                <!-- <address>
+									                    <strong class="text-main">{{invoice.user.firstName}} {{invoice.user.lastName}}</strong><br>
+									                    {{invoice.user.email}}<br>
+									                    {{invoice.user.mobile}}
+									               </address> -->
+									               <img class="img-responsive" src="../../resources/img/payment_paid.jpg" ng-if="invoice.paidDate != null" style="height: 120px;position: absolute;top: -35px;left: 30px;">
+									            </div>
+									            <div class="col-xs-6">
+									                <table class="pull-right invoice-details">
+									                    <tbody>
+									                        <tr>
+									                            <td class="text-main text-bold text-left">Invoice #</td>
+									                            <td class="text-right text-primary text-bold">{{invoice.objectId}}</td>
+									                        </tr>
+									                        <tr>
+									                            <td class="text-main text-bold text-left">Created Date</td>
+									                            <td class="text-right">{{invoice.createdDate}}</td>
+									                        </tr>
+									                        <tr ng-show="invoice.paidDate != null">
+									                            <td class="text-main text-bold text-left">Paid Date</td>
+									                            <td class="text-right">{{invoice.paidDate}}</td>
+									                        </tr>
+									                        <tr>
+									                            <td class="text-main text-bold text-left">Amount Due</td>
+									                            <td class="text-right text-bold text-main">AUD  {{invoice.totalPrice}}</td>
+									                        </tr>
+									                    </tbody>
+									                </table>
+									            </div>
+									        </div>
+									        <hr class="new-section-sm bord-no">
+									        <div class="table-responsive">
+									            <table class="table table-striped invoice-summary">
+									                <thead>
+									                    <tr class="">
+									                        <th><div class="pad-lft">Description</div></th>
+									                        <th class="min-col text-center">Qty</th>
+									                        <th class="min-col text-center">Amount</th>
+									                        <th class="min-col text-right"><div class="pad-rgt">Total</div></th>
+									                    </tr>
+									                </thead>
+									                <tbody>
+									                	<tr ng-repeat="item in invoice.invoiceItems" ng-if="item.quantity > 0">
+									                        <td class="pad-lft text-left">
+									                            <strong class="pad-lft">{{item.itemName}}</strong>
+									                        </td>
+									                        <td class="text-center">{{item.quantity}}</td>
+									                        <td class="text-center">{{item.amount}}</td>
+									                        <td class="pad-rgt text-right"><div class="pad-rgt">{{item.quantity * item.amount}}</div></td>
+									                    </tr>
+									                </tbody>
+									            </table>
+									            <table class="table" style="width: 40%;display: inline;" ng-if="invoice.paidDate == null">
+									            	<tbody>
+										                <tr>
+										                    <td class="text-right" style="text-align: left;border: 0;">
+										                    	<strong>Referral Balance:</strong>
+										                    </td>
+										                    <td class="text-left" style="padding-left: 0;border: 0;">
+										                    	${{loginuser.referal_balance}}&nbsp;&nbsp;&nbsp;
+										                    </td>
+										                </tr>
+										                <tr ng-if="loginuser.referal_balance != null && loginuser.referal_balance != 0 && loginuser.referal_balance < invoice.totalPrice">
+										                	<td class="text-right" style="text-align: left;border: 0;">
+										                    	<strong><a href="javascript:void(0);" class="text-primary" ng-click="showReferalBalanceModal();">Use Referral Balance</a></strong>
+										                    </td>
+										                    <td class="text-left" ng-if="invoice.referralAmountUsed" style="padding-left: 0;border: 0;">
+										                    	<strong><a href="javascript:void(0);" class="text-warning" ng-click="removeReferalBalanceFromInvoice();">Use Later</a></strong>
+										                    </td>
+										                </tr>
+										            </tbody>
+									            </table>
+									            <table class="table invoice-total" style="width: 50%;margin-bottom: 0;margin-right: 15px;">
+									                <tbody>
+										                <tr>
+										                    <td class="text-right" style="text-align: left;"><strong>Sub Total:</strong></td>
+										                    <td class="text-left">AUD {{invoice.subTotal}}</td>
+										                </tr>
+										                <tr ng-repeat="(key,row) in invoice.taxRows">
+										                	<td class="text-right" style="text-align: left;"><strong>Tax - {{invoice.tax[key].taxCode}}({{invoice.tax[key].taxRate}}%):</strong></td>
+										                    <td class="text-left">{{invoice.tax[key].taxAmount ? invoice.tax[key].taxAmount : '-'}}</td>
+										                </tr>
+										                <tr ng-if="invoice.discountType != null">
+										                	<td class="text-right" style="text-align: left;">
+										                		<strong>Discount {{invoice.discountType == 'P' ? '(' + invoice.discount + '%)' : ''}}:</strong>
+										                	</td>
+										                    <td class="text-left">{{invoice.discount ? (invoice.discountType == 'P' ? ('AUD' + (invoice.subTotal - invoice.totalPrice - (invoice.couponDiscount ? invoice.couponDiscount : 0))) : 'AUD' + invoice.discount) : '-'}}</td>
+										                </tr>
+										                <tr ng-if="couponApplied || invoice.coupon != null">
+										                	<td class="text-right" style="text-align: left;">
+										                		<strong>Coupon ({{invoice.coupon.code}} {{invoice.coupon.discountType == 'P' ? ' ' + invoice.coupon.discountValue + '%' : ''}}):</strong><br/>
+										                	</td>
+										                    <td class="text-left">
+										                    	AUD {{invoice.couponDiscount}}
+										                    </td>
+										                </tr>
+										                <tr ng-if="invoice.referralAmountUsed != null && invoice.referralAmountUsed > 0">
+										                	<td class="text-right" style="text-align: left;">
+										                		<strong>Referral Amount:</strong>
+										                	</td>
+										                    <td class="text-left">
+										                    	AUD {{invoice.referralAmountUsed}}
+										                    </td>
+										                </tr>
+										                <tr>
+										                    <td class="text-right" style="text-align: left;"><strong>Total:</strong></td>
+										                    <td class="text-bold h4 text-left">AUD {{invoice.totalPrice}}</td>
+										                </tr>
+										                <tr ng-if="ticketDetails.currency == 'INR' || invoice.txn.currency == 'INR'">
+										                    <td class="text-right" style="text-align: left;"><strong>Total in INR:</strong></td>
+										                    <td class="h4 text-left">&#8377; {{invoice.totalINRPrice}}</td>
+										                </tr>
+										                <tr ng-if="ticketDetails.currency == 'INR' || invoice.txn.currency == 'INR'">
+										                    <td class="text-right" style="text-align: left;"><strong>GST({{invoice.totalGSTTax}}%):</strong></td>
+										                    <td class="h4 text-left">&#8377; {{invoice.totalGSTTotal}}</td>
+										                </tr>
+										                <tr ng-if="ticketDetails.currency == 'INR' || invoice.txn.currency == 'INR'">
+										                    <td class="text-right" style="text-align: left;"><strong>Grand Total: </strong></td>
+										                    <td class="text-bold h4 text-left">&#8377; {{invoice.totalINRPriceWithTax}}</td>
+										                </tr>
+									                </tbody>
+									            </table>
+									            <div class="col-sm-12 text-right text-warning"><p><strong>Invoice amount is charged in Australian Dollars (AUD)</strong></p> </div>
+									        </div>
+									        <p class="text-left" ng-if="invoice.paidDate != null && (ticketDetails.currency == 'INR' || invoice.txn.currency == 'INR')">
+									    		Note: AUD value when payment is made - AUD {{invoice.txn.usdvalue | number:2 }}
+									    	</p>
+									        <div class="col-md-10" ng-if="invoice.paidDate == null" style="margin-bottom: 25px;margin-top: 25px;">
+									        	<form class="form-inline">
+										            <div class="form-group">
+										                <label for="demo-inline-inputmail" class="sr-only">Coupon</label>
+										                <input type="text" placeholder="Have a coupon code?" ng-model="invoice.coupon.code" ng-readonly="couponApplied" class="form-control text-uppercase"/>
+										            </div>
+										            <button class="btn btn-success" type="submit" ng-if="!couponApplied" ng-disabled="!invoice.coupon.code" ng-click="addOrRemoveCoupon('add')">Apply</button>
+										            <button class="btn btn-primary" type="submit" ng-if="couponApplied" ng-click="addOrRemoveCoupon('remove')">Remove</button>
+										        </form>
+										        <p class="text-danger" style="margin-top: 5px;margin-left: 3px;">{{coupon_error_msg}}</p>
+									        </div>
+									        <div class="mar-all row" ng-if="invoice.paidDate == null">
+									        	<div class="col-sm-3"></div>
+								        		<div class="col-sm-6">
+						                            <input id="acceptTermsAndCondition" class="magic-checkbox" type="checkbox" ng-click="updateEnableBtn('C')" />
+						                            <label for="acceptTermsAndCondition" class="text-semibold" >I Accept 2017 Electronic Lodgment Declaration</label>
+						                            <span ng-click="openELDRulesPageClick()"><i class="fa fa-2x fa-info-circle" data-toggle="tooltip" data-original-title="What is Electronic Lodgment Declaration"></i></span>
+						                        </div>
+						                        <div class="col-sm-3"></div>
+								        	</div>
+									        <div class="col-md-10 col-md-offset-1 text-center mar-top" ng-if="invoice.paidDate == null">									        	
+												<button class="btn btn-lg btn-success"
+													ng-click="showPaymentModal()"
+													ng-if="(!ticketDetails.currency || ticketDetails.currency != 'INR') && invoice.totalPrice != 0"
+													ng-disabled="!enablePaymentBtnNew">
+													Pay with Credit Card
+												</button>
+												<span style="position: relative;">
+												<div id="paypal-button-container" 
+													style="display: inline-block;vertical-align: bottom;margin-left: 5px;"
+													ng-if="(!ticketDetails.currency || ticketDetails.currency != 'INR') && invoice.totalPrice != 0">
+												</div>
+												<span class="disablepaypalbtn"	ng-if="!enablePaymentBtnNew"></span>
+												</span>
+												<button class="btn btn-lg btn-success"
+													ng-click="showPayuPaymentModal()"
+													ng-if="ticketDetails.currency == 'INR' || invoice.txn.currency == 'INR'"
+													ng-disabled="!enablePaymentBtnNew">
+													Pay with PayU
+												</button>
+												<button class="btn btn-lg btn-success"
+													ng-click="showReferralPaymentModal()"
+													ng-if="loginuser.referal_balance && loginuser.referal_balance >= invoice.totalPrice && invoice.totalPrice != 0"
+													ng-disabled="!enablePaymentBtnNew">
+													Pay with Referral Balance
+												</button>
+												<button class="btn btn-lg btn-success"
+													ng-click="showCompletePaymentModal()"
+													ng-if="invoice.totalPrice == 0"
+													ng-disabled="!enablePaymentBtnNew">
+													Pay with Coupon
+												</button>
+												<img alt="Credit Logos" src="./img/credit_cards.png" class="img-responsive mrg-top" style="margin: 15px auto;height: 40px;">
+											</div>
+											<div ng-show="!enablePaymentBtn" class="col-md-10 col-md-offset-1 text-center mar-top">
+									        	<h4>Please Approve your Draft before making a payment.</h4>
+									        	<h4>Payment link will be activated once you approve tax draft</h4>
+									        </div>
+									        <div ng-show="invoice.paidDate != null" class="col-md-12 mar-top">
+									        	<hr>
+									        	<p>Thank you for making the payment of your Tax Invoice.</p>
+												<p>If you are filing your Tax Returns ELECTRONICALLY, You will receive an E-Filing Confirmation Message from our Tax Filer in next 24-48 Hours confirming the Electronic Filing of Your Approve Tax Return Draft.</p>
+												<p>If you are NOT filing your Tax Returns electronically, you will receive your <strong>Final Tax Return Documents</strong> with Filing Instructions for onward filing with IRS / State / Local Departments in next 24-48 hours.</p>
+												<p>Note: We will get in touch with you to get the signed copies of your filing confirmation shortly.</p>
+												<p>Thank you very much for being a LOYAL Customer of <a href="www.aotax.com" target="_blank" style="color: #337ab7;">AOTAX.COM</a> and not just a SATISFIED CLIENT.</p>
+									        </div>
+									        <div class="modal" id="pay-with-coupon-modal" role="dialog" tabindex="-1"  data-keyboard="false" data-backdrop="static">
+									        	<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" >
+																<i class="pci-cross pci-circle"></i>
+															</button>
+															<h4 class="modal-title"><i class="fa fa-usd stepsuccess"></i> Complete Payment</h4>
+														</div>
+														<div class="modal-body">
+															<form name="referral-form" role="form">
+																<p>You have applied a coupon or discount has been applied which makes your total amount zero. Click on <strong>Proceed</strong> to complete the payment process</p>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-success pull-right" ng-click="useCouponAmountForPay()">
+																<strong>Proceed</strong>
+															</button>
+														</div>
+													</div>
+												</div>
+									         </div>
+									        <div class="modal" id="referal-modal" role="dialog" tabindex="-1"  data-keyboard="false" data-backdrop="static">
+									        	<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" >
+																<i class="pci-cross pci-circle"></i>
+															</button>
+															<h4 class="modal-title"><i class="fa fa-usd stepsuccess"></i> Use Referral Balance</h4>
+														</div>
+														<div class="modal-body">
+															<form name="referral-form" role="form">
+																<p><strong>Your referral balance: ${{usercontext.data.referal_balance}}</strong></p>
+																<div class="row">
+										                            <div class="col-xs-12">
+										                                <div class="form-group">
+										                                    <label for="cardNumber">Amount to use</label>
+										                                    <input type="number" class="form-control" placeholder="Enter referral amount" ng-model="invoice.referralAmountUsed"/>
+										                                </div>                            
+										                            </div>
+										                        </div>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-success pull-right" ng-disabled="invoice.referralAmountUsed > usercontext.data.referal_balance" 
+																ng-click="useRererralAmountForPay()">
+																<strong>Ok</strong>
+															</button>
+														</div>
+													</div>
+												</div>
+									         </div>
+									        <div class="modal" id="paywith-referal-modal" role="dialog" tabindex="-1"  data-keyboard="false" data-backdrop="static">
+									        	<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" >
+																<i class="pci-cross pci-circle"></i>
+															</button>
+															<h4 class="modal-title"><i class="fa fa-usd stepsuccess"></i> Pay with Referral Balance</h4>
+														</div>
+														<div class="modal-body">
+															<form name="referral-form" role="form">
+																<p>Are you sure, you want to pay with referral balance?</p>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-success pull-right" ng-click="useCompleteRererralAmountForPay()">
+																<strong>Ok proceed</strong>
+															</button>
+														</div>
+													</div>
+												</div>
+									        </div>
+											<div class="modal" id="payment-modal" role="dialog" tabindex="-1"  data-keyboard="false" data-backdrop="static">
+												<div class="modal-dialog">
+													<div class="modal-content">
+									
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" >
+																<i class="pci-cross pci-circle"></i>
+															</button>
+															<h4 class="modal-title"><i class="fa fa-lock stepsuccess"></i> Secure Payment Page</h4>
+														</div>
+														<div class="modal-body">
+															<form name="payment-form" role="form">
+															  <div class="row">
+										                            <div class="col-xs-12">
+										                                <div class="form-group">
+										                                    <label for="cardNumber">CARD NUMBER</label>
+										                                    <div class="input-group">
+										                                        <input type="number" class="form-control" name="cardNumber"  placeholder="Valid Card Number" 
+										                                        	autocomplete="cc-number" required autofocus ng-model="invoice.cardDetails.cardNumber"/>
+										                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+										                                    </div>
+										                                </div>                            
+										                            </div>
+										                        </div>
+										                        <div class="row">
+										                            <div class="col-xs-7 col-md-7">
+										                                <div class="form-group">
+										                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+										                                    <div class="col-md-12 pad-no">
+										                                    	<div class="col-md-6 pad-no">
+												                                    <select class="form-control" name="expMonth" ng-model="invoice.cardDetails.expMonth">
+																	                    <option value="01">January</option>
+																	                    <option value="02">February </option>
+																	                    <option value="03">March</option>
+																	                    <option value="04">April</option>
+																	                    <option value="05">May</option>
+																	                    <option value="06">June</option>
+																	                    <option value="07">July</option>
+																	                    <option value="08">August</option>
+																	                    <option value="09">September</option>
+																	                    <option value="10">October</option>
+																	                    <option value="11">November</option>
+																	                    <option value="12">December</option>
+																	                </select>
+																                </div>
+																                <div class="col-md-6">
+																	                <select class="form-control" name="expYear" ng-model="invoice.cardDetails.expYear">
+																	                    <option value="2018">2018</option>
+																	                    <option value="2019">2019</option>
+																	                    <option value="2020">2020</option>
+																	                    <option value="2021">2021</option>
+																	                    <option value="2022">2022</option>
+																	                    <option value="2023">2023</option>
+																	                    <option value="2024">2024</option>
+																	                    <option value="2025">2025</option>
+																	                </select>
+																	             </div>
+																             </div>
+										                                </div>
+										                            </div>
+										                            <div class="col-xs-5 col-md-5 pull-right">
+										                                <div class="form-group">
+										                                    <label for="cardCVC">CV CODE</label>
+										                                    <input type="text" class="form-control" name="cardCVC" placeholder="CVC" 
+										                                    	 required ng-model="invoice.cardDetails.cvc"/>
+										                                </div>
+										                            </div>
+										                        </div>
+															</form>
+														</div>
+														<div class="modal-footer">
+															<div class="text-danger pull-left" ng-if="invoiceFormError" style="text-align: left;width: 80%"">{{invoiceErrMsg}}</div>
+															<button id="stripe-pay-btn" class="btn btn-success pull-right" ng-click="clickToPay()" data-loading-text="Pay ${{invoice.totalPrice}}">
+																<strong>Pay ${{invoice.totalPrice}}</strong>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="modal" id="payu-payment-modal" role="dialog" tabindex="-1"  data-keyboard="false" data-backdrop="static">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<form method="post" name="payuForm">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal" >
+																	<i class="pci-cross pci-circle"></i>
+																</button>
+																<h4 class="modal-title"><i class="fa fa-warning"></i> Warning</h4>
+															</div>
+															<div class="modal-body">
+																You'll be redirected to payment gateway. Once payment is done you'll be redirected back to AOTAX dashboard.
+																<input type="hidden" name="key" value="{{payuDetails.merchant_key}}" />
+      															<input type="hidden" name="hash" value="{{payuDetails.hash}}"/>
+      															<input type="hidden" name="txnid" value="{{payuDetails.txnid}}"/>
+      															<input type="hidden" name="firstname" value="{{payuDetails.firstname}}"/>
+      															<input type="hidden" name="phone" value="{{payuDetails.phone}}"/>
+      															<input type="hidden" name="amount" value="{{payuDetails.amount}}"/>
+      															<input type="hidden" name="email" value="{{payuDetails.email}}"/>
+      															<input type="hidden" name="productinfo" value="{{payuDetails.productinfo}}"/>
+      															<input type="hidden" name="surl" value="{{payuDetails.surl}}"/>
+      															<input type="hidden" name="furl" value="{{payuDetails.furl}}"/>
+      															<input type="hidden" name="udf1" value="{{payuDetails.udf1}}"/>
+      															<input type="hidden" name="udf2" value="{{payuDetails.udf2}}"/>
+      															<input type="hidden" name="udf3" value="{{payuDetails.udf3}}"/>
+      															<input type="hidden" name="udf4" value="{{payuDetails.udf4}}"/>
+      															<input type="hidden" name="udf5" value="{{payuDetails.udf5}}"/>
+															</div>
+															<div class="modal-footer">
+																<div class="text-danger pull-left" ng-if="invoiceFormError" style="text-align: left;width: 80%"">{{invoiceErrMsg}}</div>
+																<button class="btn btn-success pull-right" type="button" ng-click="submitPayuForm();">
+																	<strong>Proceed to Pay</strong>
+																</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+									    </div>
+									</div>
+				                </div>
+				            	<div class="tab-pane fade" ng-class="{'active in': activeTab == 'TO' }">
+				            		<newtaxorganizerview fullview="yes" role="client"></newtaxorganizerview>
+				            	</div>
+				            	<div class="tab-pane fade" ng-class="{'active in': activeTab == 'FD' }">
+				            		<span ng-if="reviseddraftsList.length > 0">
+				            		<div class="panel">
+				            			<div class="panel-heading draft-collapse-tabs" >
+						                    <h4 class="panel-title">
+						                        <a href="javascript:void(0);" >Revised Drafts</a>
+						                    </h4>
+						                </div>			
+						                <div class="panel-collapse collapse in">
+						                    <div class="panel-body">
+						                    	<table class="table table-bordered">
+													<tbody>
+														<tr ng-repeat="item in reviseddraftsList">
+															<td style="width: 150px"> <label >{{item.description}}</label> </td>
+															<td > <a class="btn-link" ng-click="downloadRevisedFile(item.objectId)">{{item.fileName}}</a> </td>
+														</tr>
+													</tbody>
+												 </table>
+						                    
+						                    </div>
+						                 </div>   
+				            		</div>
+				            		
+				            		</span>
+				            		<span ng-if="ticketDetails.filingType && ticketDetails.filingType == 'E'">
+				            		<div class="panel">
+				            			<div class="panel-heading draft-collapse-tabs" >
+						                    <h4 class="panel-title">
+						                        <a href="javascript:void(0);" >8879</a>
+						                    </h4>
+						                </div>			
+						                <div class="panel-collapse collapse in">
+						                    <div class="panel-body">
+						                    	<table class="table table-bordered">
+													<!-- <thead>
+														<tr>
+															<th>File Name</th>
+															<th></th>
+														</tr>
+													</thead> -->
+													<tbody>
+														<tr ng-repeat="item in laserFilesList">
+															<td class="col-md-4 text-right">
+																<label class="text-bold" ng-if="item.type == 'F'">Federal:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'S'">{{stateNames[item.state]}}:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'O'">{{item.state}}:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'C'">{{item.state}}:</label>
+															</td>
+															<td  class="col-md-6">													
+									                       		<label ng-show="item.d8879" class="btn-link" ng-click="openMyFinalDocs(item.d8879, 'D8879', 'E')">{{item.d8879File.fileName}}</label>
+									                       		<span ng-show="item.d8879" class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.d8879, 'D8879', 'E')"></span>
+															</td>												
+														</tr>
+													</tbody>
+												 </table>
+						                    
+						                    </div>
+						                 </div>   
+				            		</div>
+				            	
+				            		<div class="panel">
+				            			<div class="panel-heading draft-collapse-tabs" >
+						                    <h4 class="panel-title">
+						                        <a href="javascript:void(0);" >Final Returns</a>
+						                    </h4>
+						                </div>			
+						                <div class="panel-collapse collapse in">
+						                    <div class="panel-body">
+						                    <table class="table table-bordered">
+												<!-- <thead>
+													<tr>
+														<th>File Name</th>
+														<th></th>
+													</tr>
+												</thead> -->
+												<tbody>
+													<tr ng-repeat="item in laserFilesList" ng-show="item.dfinalFile.fileName">
+														<td class="col-md-4 text-right">
+															<label class="text-bold" ng-if="item.type == 'F'">Federal:</label>
+						                     				<label class="text-bold" ng-if="item.type == 'S'">{{stateNames[item.state]}}:</label>
+						                     				<label class="text-bold" ng-if="item.type == 'O'">{{item.state}}:</label>
+						                     				<label class="text-bold" ng-if="item.type == 'C'">{{item.state}}:</label>
+														</td>
+														<td  class="col-md-6">													
+								                       		<label ng-show="item.dfinal" class="btn-link" ng-click="openMyFinalDocs(item.dfinal, 'FINAL', 'E')">{{item.dfinalFile.fileName}}</label>
+								                       		<span ng-show="item.dfinal" class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.dfinal, 'FINAL', 'E')"></span>
+														</td>												
+													</tr>
+												</tbody>
+											 </table>
+						                    </div>
+						                </div>
+						            </div>
+									 
+									 </span>
+									 <span ng-if="ticketDetails.filingType && ticketDetails.filingType == 'P'">
+										 <div class="panel">
+					            			<div class="panel-heading draft-collapse-tabs" >
+							                    <h4 class="panel-title">
+							                        <a href="javascript:void(0);" >8879</a>
+							                    </h4>
+							                </div>			
+							                <div class="panel-collapse collapse in">
+							                    <div class="panel-body">
+							                    	<table class="table table-bordered">
+														<tbody>
+															<tr ng-repeat="item in laserFilesList">
+																<td class="col-md-4 text-right" ng-if="item.type == 'D8879'">
+								                     				<label class="text-bold" >{{item.description}}:</label>
+																</td>
+																<td  class="col-md-6" ng-if="item.type == 'D8879'"> 
+																	<label class="btn-link" ng-click="openMyFinalDocs(item.link, 'D8879', 'P')">{{item.linkFile.fileName}}</label>
+																	<span class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.link, 'D8879', 'P')"></span>
+																</td>
+															</tr>
+														</tbody>
+													 </table>
+							                    
+							                    </div>
+							                 </div>   
+					            		</div>
+					            	
+					            		<div class="panel">
+					            			<div class="panel-heading draft-collapse-tabs" >
+							                    <h4 class="panel-title">
+							                        <a href="javascript:void(0);" >Upload Signed Files</a>
+							                    </h4>
+							                </div>			
+							                <div class="panel-collapse collapse in">
+							                    <div class="panel-body">
+							                    <table class="table table-bordered">
+													<tbody>
+														<tr ng-repeat="item in laserFilesList">
+															<td class="col-md-4 text-right" ng-if="item.type == 'FINAL'">
+																<label class="text-bold">{{stateNames[item.state]}}:</label>
+															</td>
+															<td  class="col-md-6" ng-if="item.type == 'FINAL'">
+																<input ng-show="!item.link" 
+											                       	type="file" 
+											                       	name="lascersFiles"
+											                       	class="form-control filecontent{{$index}}" 
+											                       	file-model="{{item.objectId}}" 
+											                       	file-title="{{item.objectId}}" 
+											                       	onchange="angular.element(this).scope().fileNameChanged(this)" 
+									                       		/>
+									                       		<label ng-show="item.link" class="btn-link" ng-click="openMyFinalDocs(item.link, 'FINAL', 'P')">{{item.linkFile.fileName}}</label>
+									                       		<span ng-show="item.link" class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.link, 'FINAL', 'P')"></span>
+															</td>
+															<td class="col-md-2" ng-if="item.type == 'FINAL'">
+																<button ng-show="item.link" class="btn btn-danger" ng-click="deleteMyFinalDocs(item, 'FINAL')">Delete</button>
+															</td>											
+														</tr>
+													</tbody>
+												 </table>
+							                    </div>
+							                </div>
+							            </div>	
+							            <div class="panel">
+					            			<div class="panel-heading draft-collapse-tabs" >
+							                    <h4 class="panel-title">
+							                        <a href="javascript:void(0);" >Final Returns</a>
+							                    </h4>
+							                </div>			
+							                <div class="panel-collapse collapse in">
+							                    <div class="panel-body">
+							                    	<table class="table table-bordered">
+														<tbody>
+															<tr ng-repeat="item in laserFilesList">
+																<td class="col-md-4 text-right"  ng-if="item.type == 'SFINAL'">
+								                     				<label class="text-bold" >{{item.description}}:</label>
+																</td>
+																<td  class="col-md-6"  ng-if="item.type == 'SFINAL'"> 
+																	<label class="btn-link" ng-click="openMyFinalDocs(item.link, 'SFINAL', 'P')">{{item.linkFile.fileName}}</label>
+																	<span class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.link, 'SFINAL', 'P')"></span>
+																</td>
+															</tr>
+														</tbody>
+													 </table>
+							                    
+							                    </div>
+							                 </div>   
+					            		</div>								 
+									 </span>
+									 <span ng-if="ticketDetails.filingType && ticketDetails.filingType == 'D'"> 
+									 	<div class="panel">
+					            			<div class="panel-heading draft-collapse-tabs" >
+							                    <h4 class="panel-title">
+							                        <a href="javascript:void(0);" >ELD Finals</a>
+							                    </h4>
+							                </div>			
+							                <div class="panel-collapse collapse in">
+							                    <div class="panel-body">
+							                    <table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>Name</th>
+															<th>Received Files</th>
+															<!-- <th>Upload ELD</th>
+															<th>Actions</th> -->
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="item in laserFilesList">
+															<td class="text-right">
+																<label class="text-bold" ng-if="item.type == 'F'">Federal:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'S'">{{stateNames[item.state]}}:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'O'">{{item.state}}:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'C'">{{item.state}}:</label>
+															</td>
+															<td  >													
+									                       		<label ng-show="item.d8879" class="btn-link" ng-click="openMyFinalDocs(item.d8879, 'D8879', 'D')">{{item.d8879File.fileName}}</label>
+									                       		<span ng-show="item.d8879" class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.d8879, 'D8879', 'D')"></span>
+															</td>
+															<!-- <td >
+																<input 
+																	ng-show="!item.dsigned"
+											                       	type="file" 
+											                       	name="drakeFiles"
+											                       	class="form-control filecontent{{$index}}" 
+											                       	file-model="{{item.objectId}}" 
+											                       	file-title="{{item.objectId}}" 
+											                       	onchange="angular.element(this).scope().fileNameChanged(this)" 
+									                       		/>
+									                       		<label ng-show="item.dsigned" class="btn-link" ng-click="openMyFinalDocs(item.dsigned, 'SIGNED', 'D')">{{item.signedFile.fileName}}</label>
+									                       		<span ng-show="item.dsigned" class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.dsigned, 'SIGNED', 'D')"></span>												
+															</td>
+															<td >
+																<button ng-show="item.d8879 && item.dsigned && !item.dfinal" class="btn btn-danger" ng-click="deleteMyFinalDocs(item, 'SIGNED')">Delete</button>										
+															</td>	 -->										
+														</tr>
+													</tbody>
+												 </table>
+							                    </div>
+							            </div>
+							            </div>
+							            <!-- <div class="panel">
+					            			<div class="panel-heading draft-collapse-tabs" >
+							                    <h4 class="panel-title">
+							                        <a href="javascript:void(0);" >Tax Returns</a>
+							                    </h4>
+							                </div>			
+							                <div class="panel-collapse collapse in">
+							                    <div class="panel-body">
+							                    <table class="table table-bordered">
+													<tbody>
+														<tr ng-repeat="item in laserFilesList" ng-show="item.dfinalFile.fileName">
+															<td class="col-md-4 text-right"">
+																<label class="text-bold" ng-if="item.type == 'F'">Federal:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'S'">{{stateNames[item.state]}}:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'O'">{{item.state}}:</label>
+							                     				<label class="text-bold" ng-if="item.type == 'C'">{{item.state}}:</label>
+															</td>
+															<td  class="col-md-6">
+									                       		<label ng-show="item.dfinal" class="btn-link" ng-click="openMyFinalDocs(item.dfinal, 'FINAL', 'D')">{{item.dfinalFile.fileName}}</label>
+									                       		<span ng-show="item.dfinal" class="fa fa-download download-icon" ng-click="downloadFilesIcon(item.dfinal, 'FINAL', 'D')"></span>
+															</td>										
+														</tr>
+													</tbody>
+												 </table>
+							                    </div>
+							                </div>
+							            </div>	 -->					            
+									 </span>
+				            	</div>
+				            	<!-- <div class="tab-pane fade" ng-class="{'active in': activeTab == 'DC' }">
+				            		<div class="panel">
+				            			<h4 class="panel-title">
+					                        <a href="javascript:void(0);" >Filing Terms and Conditions</a>
+					                    </h4>
+					                    <div class="panel-collapse collapse in pad-all mar-all">
+					                    	<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.</p>
+					                    	<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.</p>
+					                    	<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.</p>
+					                    	<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.</p>
+					                    	<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.</p>
+					                    </div>
+					                    <div class="pad-all text-center">
+					                    	<button class="btn btn-lg btn-success" ng-if="ticketDetails.intStatus == 'ELDP'" ng-click="agreeTermsAndCondition()">I Agree Terms and Conditions</button>
+					                    </div>
+					            	</div>
+				            	</div> -->
+				            </div>
+						</div>
+					
+				</div> <!--End Row-->
+                </div>
+       </div>
+</div>
+<askquery visible="showAskQueryClick"></askquery>
+<escalations visible="showEscalations" data="data"></escalations>
+<requestcallback visible="showRequestCallback" data="data"></requestcallback>
+<paymentsuccess visible="showPaymentSuccessModal" data="data"></paymentsuccess>
+<rejectdetailsdirective visible="rejectreson" data="proccessDraft"></rejectdetailsdirective>
+<eldrules visible="openELDRulesPage" ></eldrules>
