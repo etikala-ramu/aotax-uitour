@@ -79,10 +79,10 @@
                                 <li class="list-divider"></li>                                
 								<li class="list-divider"></li>
                                 <li class="list-header">Menu</li>
-                                <li ng-repeat="lone in levelOne"  ng-class="{'active-link ': model.link == lone.code, 'active':  lone.code == 'RQST'}" id="ui-menuList{{$index}}">
+                                <li ng-repeat="lone in levelOne"  ng-class="{'active-link ': model.link == lone.code, 'active':  lone.code == 'RQST'}" >
                                     <a ng-click="model.link = lone.code; navigateTo(lone)" href="javascript:void(0)">
                                         <i class="{{lone.cls}}"></i>
-                                        <span class="menu-title">
+                                        <span class="menu-title" id="ui-requestList">
                                         	<strong>{{labelNames[lone.code]}}</strong>
                                         </span>
                                     </a>

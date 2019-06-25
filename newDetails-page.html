@@ -10,13 +10,13 @@
                 </div> -->
                 
                 <div class="row">
-					<div class="col-md-6">
+					<div class="col-md-6" id="ui-taxLodgeStatus">
 						<h3 >TICKET #{{ticketDetails.objectId}} - {{ticketDetails.serviceName}} - {{ticketDetails.financialYear}}</h3>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3" id="ui-homeTicketStatus">
 						<h3 class='text-right text-success'>{{ticketDetails.statusName}}</h3>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3" id="ui-homeFileStatus">
 						<h3 class='text-right text-warning'>{{ticketDetails.fileStatusName}}</h3>
 					</div>
                 </div>
@@ -85,7 +85,7 @@
 												<li class="labels" data-toggle="tooltip"
 													data-original-title="Status Indicators"
 													data-placement="top"><label class="text-bold"
-													ng-class="{stepsuccess: getProSteps('FTR')}">Fill
+													ng-class="{stepsuccess: getProSteps('FTR')}" id="ui-homeTaxOrganizer">Fill
 														Tax Organizer</label></li>
 												<li>
 													<div class="fa fa-2x"
@@ -94,7 +94,7 @@
 												<li class="labels" data-toggle="tooltip"
 													data-original-title="Status Indicators"
 													data-placement="top"><label class="text-bold"
-													ng-class="{stepsuccess: getProSteps('UDS')}">Upload
+													ng-class="{stepsuccess: getProSteps('UDS')}" id="ui-homeUploadDocuments">Upload
 														Documents</label></li>
 												<li>
 													<div class="fa fa-2x"
@@ -103,7 +103,7 @@
 												<li class="labels" data-toggle="tooltip"
 													data-original-title="Status Indicators"
 													data-placement="top"><label class="text-bold"
-													ng-class="{stepsuccess: getProSteps('RTD')}">Review
+													ng-class="{stepsuccess: getProSteps('RTD')}" id="ui-homeTaxDraft">Review
 														Tax Draft</label></li>
 												<li>
 													<div class="fa fa-2x"
@@ -112,7 +112,7 @@
 												<li class="labels" data-toggle="tooltip"
 													data-original-title="Status Indicators"
 													data-placement="top"><label class="text-bold"
-													ng-class="{stepsuccess: getProSteps('PYM')}">Payment
+													ng-class="{stepsuccess: getProSteps('PYM')}" id="ui-homePaymentMade">Payment
 														Made</label></li>
 												<li>
 													<div class="fa fa-2x"
@@ -121,7 +121,7 @@
 												<li class="labels" data-toggle="tooltip"
 													data-original-title="Status Indicators"
 													data-placement="top"><label class="text-bold"
-													ng-class="{stepsuccess: getProSteps('FCM')}">Filing
+													ng-class="{stepsuccess: getProSteps('FCM')}" id="ui-homeFilingCompleted">Filing
 														Completed</label></li>
 											</ul>
 										</div>
@@ -130,14 +130,14 @@
 										<div class="col-md-9">
 											<div class="panel smooth-curve">
 												<div class="panel-heading bg-gray">
-													<h4 class=panel-title>
+													<h4 class=panel-title id="ui-homeDigitalTaxOrganizer">
 														<i class='fa fa-file pad-rgt'></i>Digital Tax
 														Organizer({{completedOrganizerForms.totalfilled}}/6)
 													</h4>
 												</div>
 												<div class='panel-body'>
 													<div class=row>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homePersonalInfo">
 															<div class="panel cuspointer smooth-curve"
 																ng-click="goToOrganizer('PSIO')">
 																<div class="panel-body text-center "
@@ -153,7 +153,7 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homeResidentialInfo">
 															<div class="panel cuspointer smooth-curve"
 																ng-click="goToOrganizer('RSIO')">
 																<div class="panel-body text-center "
@@ -169,7 +169,7 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homeEmploymentInfo">
 															<div class="panel cuspointer smooth-curve"
 																ng-click="goToOrganizer('EPIO')">
 																<div class="panel-body text-center "
@@ -185,7 +185,7 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homeExpensesInfo">
 															<div class="panel cuspointer smooth-curve"
 																ng-click="goToOrganizer('EXIO')">
 																<div class="panel-body text-center "
@@ -203,7 +203,7 @@
 														</div>
 													</div>
 													<div class='row'>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homeIncomeInfo">
 															<div class="panel cuspointer smooth-curve "
 																ng-click="goToOrganizer('INIO')">
 																<div class="panel-body text-center "
@@ -219,7 +219,7 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homeBankInfo">
 															<div class="panel cuspointer smooth-curve"
 																ng-click="goToOrganizer('BKIO')">
 																<div class="panel-body text-center "
@@ -235,14 +235,14 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-3 '>
+														<div class='col-md-3 ' id="ui-homeCurrentYearDocuments">
 															<div class="panel cuspointer smooth-curve"
 																ng-click="changeTab('MD')">
 																<div class="panel-body text-center bg-gray">
 																	 <img
 																		src="./img/documents.png" class="icon-image">
 																</div>
-																<div class="pad-all text-center fixed-height-bottom">
+																<div class="pad-all text-center fixed-height-bottom" id="ui-homeCurrentYearDocuments">
 																	<p class="text-semibold text-lg mar-no text-main">{{ticketDetails.financialYear}} Documents</p>
 																</div>
 															</div>
@@ -284,14 +284,14 @@
 																	on +1-888-MY-AOTAX on extension
 																	{{ticketDetails.accountManager.extn}}.</div>
 															</div>
-															<div class="list-group-item list-item-sm ">
+															<div class="list-group-item list-item-sm " id="ui-homeRequestCallback">
 																<button class='btn btn-warning'
 																		ng-disabled="ticketDetails.accountManager ? false: true"
 																		ng-click="showRequestCallback = !showRequestCallback"
 																		data-toggle="tooltip" title="Request a Callback">Request
 																		Callback</button>
 															</div>
-															<div class="list-group-item list-item-sm ">
+															<div class="list-group-item list-item-sm " id="ui-homeAskQuery">
 																<button class='btn btn-warning'
 																	ng-disabled="ticketDetails.accountManager ? false: true"
 																	ng-click="changeTab('MS')" data-toggle="tooltip"

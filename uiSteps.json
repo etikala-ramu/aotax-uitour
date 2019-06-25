@@ -1,6 +1,101 @@
 {
 	'clinetSteps' : [
 		{
+			element :"#ui-homeAskQuery",
+			title : "home AskQuery",
+			content : "home ui-homeAskQuery"
+		},
+		{
+			element :"#ui-homeRequestCallback",
+			title : "home RequestCallback",
+			content : "home RequestCallback"
+		},
+		{
+			element :"#ui-homeCurrentYearDocuments",
+			title : "home current year documents",
+			content : "home current year documents"
+		},
+		{
+			element :"#ui-homeBankInfo",
+			title : "home bank info",
+			content : "home bank info"
+		},
+		{
+			element :"#ui-homeIncomeInfo",
+			title : "home income info",
+			content : "home income info"
+		},
+		{
+			element :"#ui-homeExpensesInfo",
+			title : "home expenses info",
+			content : "home expenses info"
+		},
+		{
+			element :"#ui-homeEmploymentInfo",
+			title : "home employment info",
+			content : "home employment info"
+		},
+		{
+			element :"#ui-homeResidentialInfo",
+			title : "home residential info",
+			content : "home residential info"
+		},
+		{
+			element :"#ui-homePersonalInfo",
+			title : "home personal info",
+			content : "home personal info"
+		},
+		{
+			element :"#ui-homeDigitalTaxOrganizer",
+			title : "home digital tax organizer",
+			content : "home digital tax organizer"
+		},
+		{
+			element :"#ui-homeFilingCompleted",
+			title : "home filing completed",
+			content : "home filing completed"
+		},
+		{
+			element :"#ui-homePaymentMade",
+			title : "home payment made",
+			content : "home payment made"
+		},
+		{
+			element :"#ui-homeTaxDraft",
+			title : "home tax draft",
+			content : "home tax draft"
+		},
+		{
+			element :"#ui-homeUploadDocuments",
+			title : "home upload documents",
+			content : "home upload documents"
+		},
+		{
+			element :"#ui-homeTaxOrganizer",
+			title : "home tax organizer",
+			content : "home tax organizer"
+		},
+		{
+			element :"#ui-homeFileStatus",
+			title : "home file status",
+			content : "home file status"
+		},
+		{
+			element :"#ui-homeTicketStatus",
+			title : "home ticket status",
+			content : "home ticket status"
+		},
+		{
+			element :"#ui-taxLodgeStatus",
+			title : "lodge status",
+			content : "lodge status"
+		},
+		{
+			element :"#ui-requestList",
+			title : "request list",
+			content : "Hi,this is request list"
+		},
+		{
 			element :"#ui-menuList0",
 			title : "menu list",
 			content : "menu list"
