@@ -1,6 +1,131 @@
 {
 	'clinetSteps' : [
 		{
+			element :"#ui-finaldocumentsFinalReturns",
+			title : "final returns",
+			content : "Hi,this is the final returns"
+		},
+		{
+			element :"#ui-finaldocuments8879",
+			title : "final documents",
+			content : "Hi,this is the final documents"
+		},
+		{
+			element :"#ui-invoiceCreditCardPay",
+			title : "credit card payment",
+			content : "Hi,pay using credit card"
+		},
+		{
+			element :"#ui-invoiceCheckBox",
+			title : "checkbox",
+			content : "Hi,please accept our's terms and conditions"
+		},
+		{
+			element :"#ui-invoiceCouponApply",
+			title : "this is invoice coupon if any",
+			content : "Hi,provide coupon if any"
+		},
+		{
+			element :"#ui-taxdraftInvoiceTotal",
+			title : "your invoice total",
+			content : "Hi,your invoice total"
+		},
+		{
+			element :"#ui-invoiceInfo",
+			title : "your invoice info",
+			content : "Hi,your invoice info"
+		},
+		{
+			element :"#ui-taxdraftRequestChanges",
+			title : "tax draft Request Changes",
+			content : "Hi,tax draft Changes need to be made"
+		},
+		{
+			element :"#ui-taxdraftApproved",
+			title : "approve draft for filing",
+			content : "Hi,approve draft for filing"
+		},
+		{
+			element :"#ui-taxdraftApproved",
+			title : "tax draft approved",
+			content : "Hi,this is approved draft"
+		},
+		{
+			element :"#ui-taxdraftWaiting",
+			title : "tax draft waiting for approval",
+			content : "Hi,this is your draft waiting for approval"
+		},
+		{
+			element :"#ui-taxdraftRejected",
+			title : "tax draft rejected",
+			content : "Hi,this is your rejected draft"
+		},
+		{
+			element :"#ui-taxdraftDocumentsList0",
+			title : "tax draft document list",
+			content : "Hi,this is your tax draft document list"
+		},
+		{
+			element :"#ui-taxdraftReview",
+			title : "tax draft review",
+			content : "review tax draft"
+		},
+		{
+			element :"#ui-taxdraftFiles",
+			title : "tax draft files",
+			content : "Hi,this is your tax draft files"
+		},
+		{
+			element :"#ui-taxdraftInfo",
+			title : "tax draft info",
+			content : "Hi,this is tax draft info"
+		},
+		{
+			element :"#ui-mydocumentsTaxOrganizer",
+			title : "your tax organizer",
+			content : "Hi,this is your tax organizer"
+		},
+		{
+			element :"#ui-mydocumentsChooseFile",
+			title : "choose file to upload",
+			content : "Hi,choose file to upload like pdf"
+		},
+		{
+			element :"#ui-mydocumentsFileCount",
+			title : "uploaded file count",
+			content : "Hi,this is your uploaded file count"
+		},
+		{
+			element :"#ui-mydocumentsUploadedDocs",
+			title : "uploaded documents",
+			content : "Hi,this is uploaded documents"
+		},
+		{
+			element :"#ui-messageContent",
+			title : "message Received",
+			content : "Hi,this is message received from CRO"
+		},
+		{
+			element :"#ui-messageNotifications",
+			title : "message Received",
+			content : "Hi,this is notifications received"
+		},
+		{
+			element :"#ui-messageReply",
+			title : "message reply",
+			content : "Hi,click this to reply"
+		},
+		{
+			element :".ui-messageTextArea",
+			title : "message Text Area",
+			content : "Hi,write something"
+		},
+		{
+			element :"#ui-messageAskQuery",
+			title : "message AskQuery",
+			content : "Hi,Ask a query"
+		},
+		{
 			element :"#ui-homeAskQuery",
 			title : "home AskQuery",
 			content : "home ui-homeAskQuery"

@@ -317,7 +317,7 @@
 							</div>
 				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'MD' }">
 				                	 <div class="panel">
-									    <div class="panel-heading">
+									    <div class="panel-heading" id="ui-mydocumentsUploadedDocs">
 									        <h3 class="panel-title">Uploaded Documents</h3>
 									    </div>
 									    <div class="panel-body">
@@ -342,7 +342,7 @@
 								            </form> -->
 								            <div class="col-sm-12 mar-btm">
 								            	<div class="col-sm-8"></div>
-								            	<div class="col-sm-4"><label style="font-size:1em; padding: 8px;" class="label label-info pull-right">UPLOADED FILE COUNT: {{filesCount}}</label></div>
+								            	<div class="col-sm-4" id="ui-mydocumentsFileCount"><label style="font-size:1em; padding: 8px;" class="label label-info pull-right">UPLOADED FILE COUNT: {{filesCount}}</label></div>
 								            </div>
 								            <table class="table table-bordered">
 							                	<thead>
@@ -356,11 +356,11 @@
 							                				<label class="control-label" for="demo-hor-inputemail">{{item.titleName}} :</label>
 							                			</td>
 							                			<td>
-							                				<div class="col-sm-9" ng-show="(isUploadDocs[$index] || item.fileId == null || item.fileName == null)">
+							                				<div class="col-sm-9" ng-show="(isUploadDocs[$index] || item.fileId == null || item.fileName == null)" id="ui-mydocumentsChooseFile">
 									                        	<input type="file" ng-if="item.titleName != 'Tax Organizer'" class="form-control filecontent{{$index}}" file-model="{{item.fileId}}" file-title="{{item.titleId}}" name="docsFiles" onchange="angular.element(this).scope().fileNameChanged(this)" />
 									                        	<div ng-if="item.titleName == 'Tax Organizer'" style="margin-top: 8px;">Your tax Organizer will be verified by your account manager.</div>
 									                        </div>
-									                        <div class="col-sm-9" ng-show="!isUploadDocs[$index] && item.fileId != null && item.fileName != null" style="direction: flex;">
+									                        <div class="col-sm-9" ng-show="!isUploadDocs[$index] && item.fileId != null && item.fileName != null" style="direction: flex;" id="ui-mydocumentsTaxOrganizer">
 									                        	  <a class="col-sm-9 btn-link uploadfilelink" ng-click="downloadFile(item)" ng-if="item.titleName != 'Tax Organizer'">{{item.fileName}}</a>
 									                        	  <a class="col-sm-9 btn-link uploadfilelink" ng-click="downloadFile(item,null,true)" ng-if="item.titleName == 'Tax Organizer'">{{item.cloudfileName}}</a>
 									                        </div>
@@ -391,7 +391,7 @@
 				                </div>
 				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'TD' }">
 				                	<div class="panel">
-									    <div class="panel-heading">
+									    <div class="panel-heading" id="ui-taxdraftInfo">
 									        <h3 class="panel-title">Tax Draft Information</h3>
 									    </div>
 									    <div class="panel-body">
@@ -532,10 +532,10 @@
 								              			<div class="panel">
 									              			<div class="panel-heading draft-collapse-tabs">
 											                    <h4 class="panel-title">
-											                        <a href="javascript:void(0);" class='pull-left'>Tax Draft Files</a>
+											                        <a href="javascript:void(0);" class='pull-left' id="ui-taxdraftFiles">Tax Draft Files</a>
 											                       
                							<a href='https://youtu.be/_JRcgK5yPxA' target='blank' class='pull-right'><span class="btn btn-sm btn-info" style="font-weight: bold;"  >
-               							<i class="fa fa-youtube-play" style="padding-right:10px;"></i>How to Review?
+               							<i class="fa fa-youtube-play" style="padding-right:10px;" id="ui-taxdraftReview"></i>How to Review?
               							</span></a> 
 						          
 											                    </h4>
@@ -552,14 +552,14 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr ng-repeat="item in draftDocumentsList">
+																<tr ng-repeat="item in draftDocumentsList" id="ui-taxdraftDocumentsList{{$index}}">
 																	<td >
 																		<a class="btn-link uploadfilelink" ng-click="downloadFile(item, 'D')">{{item.taxFile.fileName}}</a>
 																	</td>
 																	<td>
-																		<span class="label label-danger pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'R'">Rejected</span>
-								            							<span class="label label-warning pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'W'">Waiting for Approval</span>
-								            							<span class="label label-success pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'A'">Approved Draft</span>
+																		<span class="label label-danger pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'R'" id="ui-taxdraftRejected">Rejected</span>
+								            							<span class="label label-warning pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'W'" id="ui-taxdraftWaiting">Waiting for Approval</span>
+								            							<span class="label label-success pull-left" style="margin-top: 3px;" ng-if="item.accepted == 'A'" id="ui-taxdraftApproved">Approved Draft</span>
 																	</td>
 																	<td>
 											            				<span class="infoiconstyle">
@@ -613,8 +613,8 @@
 									    <div class="panel-footer" ng-show="proccessDraft != ''">
 									    	<div class="form-group" style="height: 20px;">
 										    	<div class="col-sm-12" ng-show="proccessDraft && !rejectreson">
-									                 <button class="btn btn-danger pull-right between-space" ng-click="rejectionMethod()" >Request Changes</button>
-									           	   	 <button class="btn btn-success pull-right between-space" ng-click="beforeSelectedDraft($index, item, 'A')">Approve for Filing</button>
+									                 <button class="btn btn-danger pull-right between-space" ng-click="rejectionMethod()" id="ui-taxdraftRequestChanges">Request Changes</button>
+									           	   	 <button class="btn btn-success pull-right between-space" ng-click="beforeSelectedDraft($index, item, 'A')" id="ui-taxdraftApproved">Approve for Filing</button>
 							           			</div>
 							           			<div class="col-sm-12" ng-show="rejectreson">
 							           				<button class="btn btn-mint pull-right between-space" ng-click="selectedDraft($index, item, 'R')" ng-disabled="rejectReason.length < 1" >Request Changes</button>
@@ -627,10 +627,10 @@
 				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'MS' }">
 					                <div class="panel">
 									    <div class="panel-heading">
-									        <h3 class="panel-title">Compose New Message / Ask a Query</h3>
+									        <h3 class="panel-title" id="ui-messageAskQuery">Compose New Message / Ask a Query</h3>
 									    </div>
 									    <div class="panel-body">					    			
-									        <textarea id="template_composer" rows="5" placeholder="Template" ng-model="mailtemplate" class="form-control required">
+									        <textarea class="ui-messageTextArea" id="template_composer" rows="5" placeholder="Template" ng-model="mailtemplate" class="form-control required">
 									        </textarea>    
 											<div class="col-md-12 pad-no">
 												<div class="pull-left">
@@ -642,7 +642,7 @@
 							                        </span>
 							                        <span class="badge badge-danger cc_mail_position" ng-if="countCCEmails > 0">{{countCCEmails}}</span> -->
 												</div>
-												<div class="pull-right">
+												<div class="pull-right" id="ui-messageReply">
 													<button class="btn btn-info" ng-click="messageReplay()"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
 												</div>
 											</div>
@@ -659,12 +659,12 @@
                     								<span class="label label-default label label-primary" ng-if="mail.type == 'Q'">Query</span>
                     								<span class="label label-default label label-warning" ng-if="mail.type== 'E'">Escalation</span>
 				            					</div>
-							                    <h4 class="panel-title">
+							                    <h4 class="panel-title" id="ui-messageNotifications">
 							                        <a href="javascript:void(0);" title="{{mail.created | formatDate}}">{{mail.label}} {{mail.created | timeago}}</a>
 							                    </h4>
 							                </div>			
 							                <div class="panel-collapse collapse mail-body" ng-class="{in: activeCon == $index}">
-							                    <div class="panel-body">
+							                    <div class="panel-body" id="ui-messageContent">
 							                    	<div dynamichtml="mail.htmlContent" type="{{mail.type}}" callBackRequestTime="{{mail.callBackRequestTime}}" callBackTimezone="{{mail.callBackTimezone}}"></div>
 							                    </div>
 							                </div>
@@ -672,7 +672,7 @@
 									</div>
 				                </div>
 				                <div class="tab-pane fade" ng-class="{'active in': activeTab == 'PY' }">
-				                	<div ng-if="invoice == null">Invoice not created yet.</div>
+				                	<div ng-if="invoice == null" id="ui-invoiceInfo">Invoice not created yet.</div>
 				                	<div class="panel" ng-if="invoice != null">
 									    <div class="panel-body">
 									        <div class="media-block text-left">
@@ -770,7 +770,7 @@
 									                <tbody>
 										                <tr>
 										                    <td class="text-right" style="text-align: left;"><strong>Sub Total:</strong></td>
-										                    <td class="text-left">AUD {{invoice.subTotal}}</td>
+										                    <td class="text-left" id="ui-taxdraftInvoiceTotal">AUD {{invoice.subTotal}}</td>
 										                </tr>
 										                <tr ng-repeat="(key,row) in invoice.taxRows">
 										                	<td class="text-right" style="text-align: left;"><strong>Tax - {{invoice.tax[key].taxCode}}({{invoice.tax[key].taxRate}}%):</strong></td>
@@ -827,7 +827,7 @@
 										                <label for="demo-inline-inputmail" class="sr-only">Coupon</label>
 										                <input type="text" placeholder="Have a coupon code?" ng-model="invoice.coupon.code" ng-readonly="couponApplied" class="form-control text-uppercase"/>
 										            </div>
-										            <button class="btn btn-success" type="submit" ng-if="!couponApplied" ng-disabled="!invoice.coupon.code" ng-click="addOrRemoveCoupon('add')">Apply</button>
+										            <button class="btn btn-success" type="submit" ng-if="!couponApplied" ng-disabled="!invoice.coupon.code" ng-click="addOrRemoveCoupon('add')" id="ui-invoiceCouponApply">Apply</button>
 										            <button class="btn btn-primary" type="submit" ng-if="couponApplied" ng-click="addOrRemoveCoupon('remove')">Remove</button>
 										        </form>
 										        <p class="text-danger" style="margin-top: 5px;margin-left: 3px;">{{coupon_error_msg}}</p>
@@ -836,7 +836,7 @@
 									        	<div class="col-sm-3"></div>
 								        		<div class="col-sm-6">
 						                            <input id="acceptTermsAndCondition" class="magic-checkbox" type="checkbox" ng-click="updateEnableBtn('C')" />
-						                            <label for="acceptTermsAndCondition" class="text-semibold" >I Accept 2017 Electronic Lodgment Declaration</label>
+						                            <label for="acceptTermsAndCondition" class="text-semibold" id="ui-invoiceCheckBox">I Accept 2017 Electronic Lodgment Declaration</label>
 						                            <span ng-click="openELDRulesPageClick()"><i class="fa fa-2x fa-info-circle" data-toggle="tooltip" data-original-title="What is Electronic Lodgment Declaration"></i></span>
 						                        </div>
 						                        <div class="col-sm-3"></div>
@@ -845,7 +845,7 @@
 												<button class="btn btn-lg btn-success"
 													ng-click="showPaymentModal()"
 													ng-if="(!ticketDetails.currency || ticketDetails.currency != 'INR') && invoice.totalPrice != 0"
-													ng-disabled="!enablePaymentBtnNew">
+													ng-disabled="!enablePaymentBtnNew" id="ui-invoiceCreditCardPay">
 													Pay with Credit Card
 												</button>
 												<span style="position: relative;">
@@ -1113,7 +1113,7 @@
 				            		<div class="panel">
 				            			<div class="panel-heading draft-collapse-tabs" >
 						                    <h4 class="panel-title">
-						                        <a href="javascript:void(0);" >8879</a>
+						                        <a href="javascript:void(0);" id="ui-finaldocuments8879">8879</a>
 						                    </h4>
 						                </div>			
 						                <div class="panel-collapse collapse in">
@@ -1148,7 +1148,7 @@
 				            		<div class="panel">
 				            			<div class="panel-heading draft-collapse-tabs" >
 						                    <h4 class="panel-title">
-						                        <a href="javascript:void(0);" >Final Returns</a>
+						                        <a href="javascript:void(0);" id="ui-finaldocumentsFinalReturns">Final Returns</a>
 						                    </h4>
 						                </div>			
 						                <div class="panel-collapse collapse in">
