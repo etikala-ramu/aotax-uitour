@@ -1,0 +1,295 @@
+<div class="boxed">
+  <div id="content-container">
+	<div id="page-content">
+                <!-- <div style="display: flex;">
+	                <h3 style="flex:1;">TICKET #{{ticketDetails.objectId}} - {{ticketDetails.serviceName}} - {{ticketDetails.financialYear}}</h3>
+	                <i class="fa fa-refresh refresh-icon" ng-click="refreshDetails()"></i>
+	                <span class="assignToBtn bg-mint" ng-click="assignTo()">
+	                  <i class="fa fa-forward" aria-hidden="true" ></i>
+	                  <i class="fa fa-user" aria-hidden="true" ></i>
+	                </span>
+	                <tickettimelogs config-details="logConfigDetails" />
+                </div> -->
+                
+                <div class="row">
+                	<div class="col-md-9" style="margin-top: 4px;">
+                		<h3>TICKET #{{ticketDetails.objectId}} - {{ticketDetails.serviceName}} - {{ticketDetails.financialYear}}
+                		<span><label class="text-center label label-primary" style="font-size:10px">{{ticketDetails.statusName}}{{sname}}</label></span>
+                		<span><label class="text-center label label-warning" style="font-size:10px">{{ticketDetails.fileStatusName}}{{fsname}}</label></span>
+                		<span style="float: right;">
+                			<label class="text-center label" ng-class="(ticketDetails.invoice && ticketDetails.invoice.paidDate != null) ? 'label-success' : 'label-default' " style="font-size:10px">PAYMENT MADE</label>
+                		</span>
+                		</h3>
+                	</div>
+                		
+                	<div class="col-md-3" style="display: flex;">
+                		<div style="flex: 1">Client ID : {{ticketDetails.user.clientId}}</div>
+                		<i class="fa fa-refresh refresh-icon" ng-click="refreshDetails()" data-toggle="tooltip" title="Refresh"></i>
+		               <!--  <span class="assignToBtn bg-mint" ng-click="assignTo()" data-toggle="tooltip" title="Assign to" aria-expanded="false" ng-show="isBAAccess">
+		                  <i class="fa fa-forward" aria-hidden="true" ></i>
+		                  <i class="fa fa-user" aria-hidden="true" ></i>
+		                </span> -->
+		                <!-- ticketDetails.intStatus -->
+		                <span data-toggle="tooltip" title="Timeline"><tickettimelogs config-details="logConfigDetails" ></tickettimelogs></span>
+		                <i ng-show="isBAAccess" class="fa fa-ban walkout-icon" data-toggle="tooltip" title="Walkout" aria-expanded="false" ng-click="walkoutDetails()"></i>
+                	</div>
+                </div>
+                
+				<div class="row">
+
+				<div class="col-md-9"> 
+				<!-- Begin Text Editor -->
+				
+				<div class="panel">
+				    <div class="panel-heading">
+				        <h3 class="panel-title">Compose New Message</h3>
+				    </div>
+				    <div class="panel-body pad-btm">					    			
+				        <textarea id="template_composer" rows="5" placeholder="Template" ng-model="mailtemplate" class="form-control required">
+				        </textarea>  
+						<div class="col-md-12 pad-no">
+							<div class="pull-left">
+								<!-- <span class="pull-left btn btn-primary btn-file" ng-if="false">
+		                        	<i class="fa fa-paperclip" aria-hidden="true"></i> Attachments <input type="file">
+		                        </span> -->
+		                       <!--  <span class="pull-left btn btn-default" ng-click="toggleCCEmails = !toggleCCEmails;">
+		                        	<i class="fa fa-envelope" aria-hidden="true"></i> CC Emails
+		                        </span>
+		                        <span class="badge badge-danger cc_mail_position" ng-if="countCCEmails > 0">{{countCCEmails}}</span> -->
+							</div>
+							<div class="pull-right">
+								<!--span class="private checkbox">
+									<input type="checkbox" class="magic-checkbox" ng-click="isPrivate = !isPrivate"/>
+									<label for="demo-form-inline-checkbox" >Private</label>
+								</span -->
+								<div class="checkbox display-inline-block">
+					                <input id="Private" class="magic-checkbox" type="checkbox" ng-click="isPrivate = !isPrivate">
+					                <label for="Private" style="padding-right: 10px !important;" data-toggle="tooltip" title="To send a private note">Private</label>
+					            </div>
+								<button class="btn btn-warning" ng-click="messageReplay()"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+							</div>
+						</div>
+						<div class="col-md-12 pad-no" style="margin-top: 10px;" ng-show="toggleCCEmails">
+							<input type="text" class="form-control" placeholder="Add CC Email" value="{{ticketDetails.ccEmail}}" data-role="tagsinput" />
+						</div>
+				    </div>
+				</div>
+				
+				
+				<!-- End Text Editor -->
+				<div class="panel-group accordion" >
+					<div class="panel" ng-repeat="mail in mailList track by $index">			
+		                <div class="panel-heading {{mail.clientMail ? 'bg-whitesmoke' : ''}}" ng-click="setActiveMail($index)">
+		                    <div class="panel-control mar-top">
+                    			<span class="label label-default " ng-if="mail.type == 'P'">Private</span>
+                    			<span class="label label-default label label-primary" ng-if="mail.type == 'Q'">Query</span>
+                    			<span class="label label-default label label-warning" ng-if="mail.type == 'E'">Escalate</span>
+				            </div>
+		                    <h4 class="panel-title">
+	                        	<a href="javascript:void(0);" class="display-inline-block" title="{{mail.created | formatDate}}">{{mail.label}} {{mail.created | timeago}}</a>
+		                    </h4>
+		                </div>			
+		                <div class="panel-collapse collapse mail-body" ng-class="{in: activeCon == $index}">
+		                    <div class="panel-body">
+		                    	<div dynamichtml="mail.htmlContent" type="{{mail.type}}" callBackRequestTime="{{mail.callBackRequestTime}}" callBackTimezone="{{mail.callBackTimezone}}"></div>
+		                    </div>
+		                </div>
+		            </div>
+			     </div>			
+				
+				</div><!-- End Col-md-9-->	    
+    				<div class="col-md-3 pull-sm-right">
+    					<div class="panel widget">
+					                    <span ng-click="clientDetails()" data-toggle="tooltip" title=" View client details" style="cursor:pointer">
+					                    <div class="widget-header bg-aotax-black text-center" >
+					                        <h4 class="mar-no pad-top">{{ticketDetails.clientName}}</h4>
+					                        <h4 class="mar-no pad-top pad-btm">
+					                        	{{ticketDetails.user.countryCode && ticketDetails.user.countryCode != 'undefined' ? '(' + ticketDetails.user.countryCode + ')' : ''}} {{ticketDetails.user.mobile}}
+					                        </h4>
+					                    </div>
+					                    </span>
+					                    <div class="widget-body" >
+											<img class="widget-img img-circle custome-profile-icon" src="https://www.gravatar.com/avatar/{{ticketDetails.user.avatar}}?d=404"
+		                        					onerror="renderInitial(this);" data-name="{{ticketDetails.clientName}}" />
+					                        <div class="list-group bg-trans mar-no">
+					                           <a class="list-group-item list-item-sm" >
+					                                <span class="label label-default pull-right" >{{clientdatainfo.STATE}}</span>
+					                                Location
+					                            </a>
+					                            <a class="list-group-item list-item-sm" href="#" >
+					                                <span class="label label-primary pull-right">{{clientdatainfo.TIMEZONE}}</span>
+					                                Time Zone
+					                                </a>
+					                            <a class="list-group-item list-item-sm" ng-click="setcurrency()" href="javascript:void(0);">
+					                                 <span class="label label-default pull-right" ng-if="ticketDetails.currency == 'INR'">INR</span>
+					                                 <span class="label label-default pull-right" ng-if="!ticketDetails.currency || ticketDetails.currency == 'AUD'">AUD</span>
+													 Currency
+											    </a>
+					                        </div>
+					                        
+					                    </div>
+					                    <div class="row text-center mar-btm">
+				                            <button class="btn btn-aot-info" ng-click="callToCustomer()">Call</button>
+				                            <button class="btn btn-aot-info" ng-click="creatTitcketPopup()" ng-show="cTicketAccess">Create Ticket</button>
+				                        </div>
+				                        <div class="row text-center mar-btm" ng-show="takeOwnerBtn">
+				                            <button class="btn btn-warning text-bold" ng-click="beforeclicktocall = true">Take Ownership</button>
+				                        </div>
+					                </div>
+				        <!-- <div class="panel client-details">
+		                    <div class="panel-body text-center">
+		                        <img alt="Profile Picture" class="img-lg img-circle mar-btm" src="img/profile-photos/5.png">
+		                        <img alt="Profile Picture" class="img-lg img-circle mar-btm" src="https://www.gravatar.com/avatar/{{ticketDetails.user.avatar}}?d=404"
+		                        	onerror="renderInitial(this);" data-name="{{ticketDetails.clientName}}"/>
+		                        <p class="text-lg text-semibold text-main">{{ticketDetails.clientName}}</p>
+		                        <div class="row" style="margin-top:15px;" ng-show="usercontext.role != 'BA'">
+					            	<p class="text-muted mar-no" >CRO</p>
+					            	<div ><strong>Name: </strong>{{ticketDetails.accountManagerName}}</div>
+					            </div>
+		                        <div class="row text-left loc">
+					            	<div><i class="col-md-2 fa fa-map-marker"></i><span class="col-md-8">San Jose</span></div>
+					            </div>
+					            <div class="row text-left loc">
+					            	<div ><i class="col-md-2 fa fa-globe"></i><span class="col-md-8">Pacific</span></div>
+					            </div>
+		                        <div class="mar-top">
+		                            <button class="btn btn-mint" ng-click="callToCustomer()" data-toggle="tooltip" title="Click TO call">Call</button>
+		                            <button class="btn btn-mint" ng-click="creatTitcketPopup()" data-toggle="tooltip" title="Create New TIcket">Create Ticket</button>
+		                        </div>
+		                    </div>
+				        </div> -->
+				       
+				        <div class="panel">
+		                    <div class="panel-body text-center">
+		                    		<img src="./img/taxorganizer_icon.png" class="img-responsive">
+<!-- 		                        <p class="text-lg text-semibold mar-no text-main">Client Details</p>
+ -->		                        <div class="row" style="margin-top: 20px">
+						            	<a class="btn btn-mint" href="/aotax/user/newTaxOrganizer.jsp?u={{ticketDetails.user.objectId}}&t={{ticketDetails.objectId}}" target="_blank">Client Details</a>
+						            </div>
+						           <!--  <div class="row" style="margin-top: 15px">
+						            	<a href="javascript:void(0);" class="text-bold" ng-if="snapshot.OBJECTID" ng-click="viewOrg(snapshot.OBJECTID)" style="color: #337ab7;">Latest Snapshot</a><br>
+						            	<a href="javascript:void(0);" class="text-bold" ng-click="clientDetails()" style="color: #337ab7;">All Snapshots</a>
+						            </div> -->
+		                    </div>
+				        </div>
+				      
+				        <div class="panel">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="fileModal = !fileModal">
+		                        <!-- <p class="text-lg text-semibold mar-no text-main">Documents Uploaded</p> -->
+		                        <img src="./img/documents_icon.png" class="img-responsive">
+		                        <p class="text-4x mar-no">{{filesCount}}</p>
+		                    </div>
+				        </div>	
+				        <div class="panel">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="draftmodal = !draftmodal">
+		                        <!-- <p class="text-lg text-semibold mar-no text-main">Tax Drafts</p> -->
+		                        <img src="./img/taxdraft_icon.png" class="img-responsive">
+		                        <p class="text-4x mar-no">{{taxDraftCount}}</p>
+		                    </div>
+				        </div>
+				        <!--commented as it is  not completed yet  -->
+				        <div class="panel" ng-show="usercontext.role == 'TF'">
+		                    <div class="panel-body text-center" >
+		                    	<!-- <div >
+		                    		<p class="text-lg text-semibold mar-no text-main">Filing Type</p>
+		                    		<select class="mar-ver form-control" ng-model="ticketDetails.filingType" 
+		                    				ng-disabled="ticketDetails.intStatus != null && ticketDetails.intStatus != 'EXTN'" >
+		                    			<option value="D">Lodgement Pending</option>
+		                    		</select>
+		                    		<button ng-show="ticketDetails.intStatus == null" class="mar-ver btn btn-block btn-mint" ng-click="saveLacertStatus()">Save</button>
+		                    	</div>
+		                		<div ng-show="lacertsStatusSelect == 'D'">
+		                			<p class="text-lg text-semibold mar-no text-main">Filing</p>
+		                			<div class="radio text-left" >
+			                            <input id="drakeFilling1" class="magic-radio" type="radio" value="DRSN" ng-model="ticketDetails.intStatus" ng-click="intitutStatusClick('DRSN')"/>
+			                            <label for="drakeFilling1">ELD Send</label>
+			                        </div>
+			                        <div class="text-left">
+			                        	<input id="drakeFilling3" class="magic-radio" type="radio" />
+			                        	<label class="btn btn-link"  ng-click="intitutStatusClick('DRSN')" for="drakeFilling3">ELD Received</label>
+			                        </div>
+			                        <div class="radio text-left" >
+			                            <input id="drakeFilling2" class="magic-radio" type="radio" value="DRCO" ng-model="ticketDetails.intStatus" ng-click="intitutStatusClick('DRCO')"/>
+			                            <label for="drakeFilling2">Tax Return Lodged</label>
+			                        </div>
+		                		</div>
+		                		 -->
+		                		<h4 class="text-left">Upload Finals</h4>
+		                		<!-- <div >
+		                			<span class="text-semibold mar-no text-main" ng-show="ticketDetails.intStatus != null && ticketDetails.intStatus == 'ELDP'">Status: ELD Pending</span>
+		                			<span class="text-semibold mar-no text-main" ng-show="ticketDetails.intStatus != null && ticketDetails.intStatus == 'ELDC'">Status: ELD Complete</span>
+		                		</div> -->
+		                		<div class="pad-all">
+		                			<button class="btn btn-info" 
+		                				ng-click="intitutStatusClick('DRSN')" >
+		                				Click Here
+		                			</button>
+		                		</div>
+		                    </div>
+				        </div>
+				        <div class="panel">
+		                    <div class="panel-body text-center">
+		                		<img src="./img/paydetails_icon.jpg" class="img-responsive">
+<!-- 		                        <p class="text-lg text-semibold mar-no text-main">Payment Details</p>
+ -->		                        <div class="row" style="margin-top: 20px">
+					            	<div ><strong>Invoice No: </strong> {{ticketDetails.invoice ? ticketDetails.invoice.objectId : '-'}}</div>
+					            	<div ><strong>Amount: </strong> {{ticketDetails.invoice ? 'AUD' + ticketDetails.invoice.totalPrice : '-'}}</div>
+					            	<div>
+					            		<strong>Status: </strong>
+					            		<span class="label label-danger" ng-if="ticketDetails.invoice && ticketDetails.invoice.paidDate == null">Payment Pending</span>
+					            		<span class="label label-success" ng-if="ticketDetails.invoice && ticketDetails.invoice.paidDate != null">Paid</span>
+					            		<span ng-if="ticketDetails.invoice == null">-</span>
+					            	</div>
+					            </div>
+		                        <div class="mar-top" ng-if="!ticketDetails.invoice">
+		                            <button class="btn btn-mint" ng-disabled="unAuthorizedCRO || taxDraftCount <= 0" ng-click="showGenerateInvoiceModal();">Generate Invoice</button>
+		                        </div>
+		                        <div class="mar-top" ng-if="ticketDetails.invoice != null">
+		                        	<button class="btn btn-mint" ng-disabled="taxDraftCount <= 0" ng-click="showGenerateInvoiceModal();">{{ticketDetails.invoice.paidDate == null ? 'Edit' : 'View'}} Invoice</button>
+		                        </div>
+		                    </div>
+				        </div>
+				        <!-- Hiding Working files  -->
+				        <div class="panel">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="workingpapaers = !workingpapaers">
+		                    	<span class="fa fa-2x fa-file-text-o"></span>
+		                    	<h4>Working files</h4>
+		                    </div>
+		                </div>
+		                
+		                <div class="panel" ng-show="usercontext.role == 'TF'">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="reviseddrafts = !reviseddrafts">
+		                    	<span class="fa fa-2x fa-file-text-o"></span>
+		                    	<h4>Revised Tax Draft</h4>
+		                    </div>
+		                </div>
+		                
+				       	<div class="panel"
+				       		ng-show="ticketDetails.intStatus == 'FACO' || ticketDetails.intStatus == 'ITCO' || ticketDetails.intStatus == 'DRCO'"
+				       	>
+				       		<div class="panel-body text-center">
+					       		<button class="btn btn-danger"
+					       			ng-click="makeFilingComplete()"
+					       		>
+					       		CLOSE TICKET
+					       		</button>
+				       		</div>
+				       	</div>	        
+				    </div>
+					
+				</div> <!--End Row-->
+                </div>
+       </div>
+</div>
+
+<assigntouser visible="showAssignUser" loginuser="loginuser" ticketid="tktIds"></assigntouser>
+<uploaddocuments visible="fileModal" ticketid="tktIds"  loginuser="loginuser"></uploaddocuments>
+<modalpopup visible="showModal" data="tktData"></modalpopup>
+<generateinvoice visible="showGenerateInvoice" data="invoiceData"></generateinvoice>
+<draftdocuments visible="draftmodal" ticketid="tktIds" loginuser="loginuser" ></draftdocuments>
+<lacertestatusdirective visible="lacertestatus" data="lacerteData"></lacertestatusdirective>
+<workingpapers visible="workingpapaers" data="tktData"></workingpapers>
+<paperfilingdirective visible="paperFilingstatus" data="lacerteData"></paperfilingdirective>
+<drakeefilingdirective visible="drakestatus" data="lacerteData"></drakeefilingdirective>
+<beforeclicktocall visible="beforeclicktocall" data="modalPopUpType"></beforeclicktocall>
+<reviseddraftsdirective visible="reviseddrafts" data="tktData"></reviseddraftsdirective>
