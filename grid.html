@@ -1,0 +1,79 @@
+<div class="fixed-table-container" style="padding-bottom: 0px;">
+     <div class="fixed-table-body" style="overflow: auto;">
+         <!-- <div class="fixed-table-loading" style="top: 42px; display: none;">Loading, please wait...</div> -->
+         <table id="demo-custom-toolbar" class="demo-add-niftycheck table table-hover" data-toggle="table" data-url="data/bs-table.json" data-toolbar="#demo-delete-row" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-sort-name="id" data-page-list="[5, 10, 20]" data-page-size="5" data-pagination="true" data-show-pagination-switch="true">
+             <thead ng-if="!options.showHeader">
+                 <tr>
+                 <th></th>
+                     <th ng-if="options.checkcolumn" class="bs-checkbox " style="width: 36px; " data-field="state" tabindex="0">
+                         <div class="th-inner ">
+                         	 <div class="checkbox display-inline-block  mar-no">
+				                <!-- <input name="btSelectAll" id="selectAll" class="magic-checkbox" type="checkbox" ng-click="checkboxchecked(data.objectId)">
+				                <label for="selectAll" style="padding-right: 10px !important;"></label> -->
+				             </div>
+                         </div>
+                     </th>
+                     <th ng-repeat="column in options.columns" ng-class="{center: column.center}">
+                         <div class="th-inner sortable both asc">{{column.label}}</div>
+                         <div class="fht-cell"></div>
+                     </th>                                                                                               
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr ng-repeat="data in dataItems" ng-class="{isUnRead: data.read == 'F'}">
+                     <td ng-if="options.checkcolumn" class="bs-checkbox vertical-align-middle" style="padding-top: 5px;width: 50px;">
+                         <!--input name="btSelectItem" type="checkbox" ng-click="checkboxchecked(data.objectId)" -->
+                         <div class="checkbox display-inline-block mar-no">
+			                <input name="btSelectItem" id="{{data.objectId}}" class="magic-checkbox" type="checkbox" ng-click="checkboxchecked(data.objectId)">
+			                <label for="{{data.objectId}}" style="padding-right: 10px !important;"></label>
+			             </div>
+                     </td>
+                     <td><img src='./img/tickets.png' alt='ticket'></td>
+                     <td ng-repeat="column in options.columns" class="vertical-align-middle text_ellipsis" ng-class="{center: column.center, text_ellipsis: column.ellipsis}" ng-style="setWidth(column.style)" data-name="{{column}}">
+                        <span ng-if="column.showReferrerBadge && data.user.refererId" class="label label-success refer_badge">Ref</span>
+                        <span ng-if="!column.isHTMLContent && !column.renderAsImg && !column.icon && !column.isImpotantIcon && !column.renderAsLink" 
+                     	   ng-class="getColumnCls(column, data.status)"
+                     	   ng-click="columnClick(column, data)">
+                     	   <span ng-if="!column.defaultValue">{{defaultRenderer(data, column.dataIndex, column.renderer)}}</span>
+                     	   <span ng-if="column.defaultValue" >{{column.defaultValue}}</span>
+                     	</span>
+                     	<a ng-if="column.renderAsLink" href="mailto:{{defaultRenderer(data, column.dataIndex, column.renderer)}}" style="color: #23527c;">{{defaultRenderer(data, column.dataIndex, column.renderer)}}</a>
+                     	<img align="middle" ng-if="column.renderAsImg" class="avatarimg" ng-src="{{getGravatarImage(data)}}" onerror="renderInitial(this)" data-name="{{defaultRenderer(data, 'firstName', false)}}"/>
+                     	<i ng-if="column.icon" 
+                     	   class={{column.icon}} 
+                     	   ng-class="defaultRenderer(data, column.dataIndex, column.renderer)"
+                     	   ng-click="columnClick(column, data)"
+                     	></i>
+                     	<div ng-if="column.isHTMLContent" dynamichtml="defaultRenderer(data, column.dataIndex, column.renderer)"></div>
+                     	<!-- <input ng-if="column.isHTMLContent" bs-switch ng-model="data.category" type="checkbox" switch-on-text="ON" switch-off-text="OFF" ng-true-value="'E'" ng-false-value="'P'" switch-off-color="green" switch-on-color="green" > -->
+                     </td>
+                 </tr>
+             </tbody>
+           </table>
+           <span ng-if="!dataItems.length" class="mar-lft">No results found.</span>
+ 	</div>
+ </div>
+ 
+ <div class="row" ng-show="totalcount > pagination.limit">
+   <div class="col-sm-6">
+      <div class="dataTables_info" role="status" aria-live="polite">Showing {{showingFrom}} to {{showingTo}} of {{totalcount}} entries</div>
+   </div>
+   <div class="col-sm-6">
+      <div class="dataTables_paginate paging_simple_numbers" id="demo-dt-selection_paginate">
+         <ul class="pagination" style="float:right">
+            <li class="paginate_button previous" aria-controls="demo-dt-selection" tabindex="0" >
+            	<span ng-click="pagingPrevous()"><i class="demo-psi-arrow-left"></i></span>
+            </li>
+            <li class="paginate_button" aria-controls="demo-dt-selection" tabindex="0">
+            	<span style="padding: 0px 10px 0 0;">
+            		<input type="number" class="pagin-number" ng-model="currentCount" ng-change="enterPageNumber(currentCount)" />
+            	    / {{totalPages}}            	
+            	</span>
+            </li>
+            <li class="paginate_button next" aria-controls="demo-dt-selection" tabindex="0" >
+            	<span ng-click="pagingNext()"><i class="demo-psi-arrow-right"></i></span>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
