@@ -1,229 +1,9 @@
 {
 	'clinetSteps' : [
 		{
-			element :"#ui-finaldocumentsFinalReturns",
-			title : "final returns",
-			content : "Hi,this is the final returns"
-		},
-		{
-			element :"#ui-finaldocuments8879",
-			title : "final documents",
-			content : "Hi,this is the final documents"
-		},
-		{
-			element :"#ui-invoiceCreditCardPay",
-			title : "credit card payment",
-			content : "Hi,pay using credit card"
-		},
-		{
-			element :"#ui-invoiceCheckBox",
-			title : "checkbox",
-			content : "Hi,please accept our's terms and conditions"
-		},
-		{
-			element :"#ui-invoiceCouponApply",
-			title : "this is invoice coupon if any",
-			content : "Hi,provide coupon if any"
-		},
-		{
-			element :"#ui-taxdraftInvoiceTotal",
-			title : "your invoice total",
-			content : "Hi,your invoice total"
-		},
-		{
-			element :"#ui-invoiceInfo",
-			title : "your invoice info",
-			content : "Hi,your invoice info"
-		},
-		{
-			element :"#ui-taxdraftRequestChanges",
-			title : "tax draft Request Changes",
-			content : "Hi,tax draft Changes need to be made"
-		},
-		{
-			element :"#ui-taxdraftApproved",
-			title : "approve draft for filing",
-			content : "Hi,approve draft for filing"
-		},
-		{
-			element :"#ui-taxdraftApproved",
-			title : "tax draft approved",
-			content : "Hi,this is approved draft"
-		},
-		{
-			element :"#ui-taxdraftWaiting",
-			title : "tax draft waiting for approval",
-			content : "Hi,this is your draft waiting for approval"
-		},
-		{
-			element :"#ui-taxdraftRejected",
-			title : "tax draft rejected",
-			content : "Hi,this is your rejected draft"
-		},
-		{
-			element :"#ui-taxdraftDocumentsList0",
-			title : "tax draft document list",
-			content : "Hi,this is your tax draft document list"
-		},
-		{
-			element :"#ui-taxdraftReview",
-			title : "tax draft review",
-			content : "review tax draft"
-		},
-		{
-			element :"#ui-taxdraftFiles",
-			title : "tax draft files",
-			content : "Hi,this is your tax draft files"
-		},
-		{
-			element :"#ui-taxdraftInfo",
-			title : "tax draft info",
-			content : "Hi,this is tax draft info"
-		},
-		{
-			element :"#ui-mydocumentsTaxOrganizer",
-			title : "your tax organizer",
-			content : "Hi,this is your tax organizer"
-		},
-		{
-			element :"#ui-mydocumentsChooseFile",
-			title : "choose file to upload",
-			content : "Hi,choose file to upload like pdf"
-		},
-		{
-			element :"#ui-mydocumentsFileCount",
-			title : "uploaded file count",
-			content : "Hi,this is your uploaded file count"
-		},
-		{
-			element :"#ui-mydocumentsUploadedDocs",
-			title : "uploaded documents",
-			content : "Hi,this is uploaded documents"
-		},
-		{
-			element :"#ui-messageContent",
-			title : "message Received",
-			content : "Hi,this is message received from CRO"
-		},
-		{
-			element :"#ui-messageNotifications",
-			title : "message Received",
-			content : "Hi,this is notifications received"
-		},
-		{
-			element :"#ui-messageReply",
-			title : "message reply",
-			content : "Hi,click this to reply"
-		},
-		{
-			element :".ui-messageTextArea",
-			title : "message Text Area",
-			content : "Hi,write something"
-		},
-		{
-			element :"#ui-messageAskQuery",
-			title : "message AskQuery",
-			content : "Hi,Ask a query"
-		},
-		{
-			element :"#ui-homeAskQuery",
-			title : "home AskQuery",
-			content : "home ui-homeAskQuery"
-		},
-		{
-			element :"#ui-homeRequestCallback",
-			title : "home RequestCallback",
-			content : "home RequestCallback"
-		},
-		{
-			element :"#ui-homeCurrentYearDocuments",
-			title : "home current year documents",
-			content : "home current year documents"
-		},
-		{
-			element :"#ui-homeBankInfo",
-			title : "home bank info",
-			content : "home bank info"
-		},
-		{
-			element :"#ui-homeIncomeInfo",
-			title : "home income info",
-			content : "home income info"
-		},
-		{
-			element :"#ui-homeExpensesInfo",
-			title : "home expenses info",
-			content : "home expenses info"
-		},
-		{
-			element :"#ui-homeEmploymentInfo",
-			title : "home employment info",
-			content : "home employment info"
-		},
-		{
-			element :"#ui-homeResidentialInfo",
-			title : "home residential info",
-			content : "home residential info"
-		},
-		{
-			element :"#ui-homePersonalInfo",
-			title : "home personal info",
-			content : "home personal info"
-		},
-		{
-			element :"#ui-homeDigitalTaxOrganizer",
-			title : "home digital tax organizer",
-			content : "home digital tax organizer"
-		},
-		{
-			element :"#ui-homeFilingCompleted",
-			title : "home filing completed",
-			content : "home filing completed"
-		},
-		{
-			element :"#ui-homePaymentMade",
-			title : "home payment made",
-			content : "home payment made"
-		},
-		{
-			element :"#ui-homeTaxDraft",
-			title : "home tax draft",
-			content : "home tax draft"
-		},
-		{
-			element :"#ui-homeUploadDocuments",
-			title : "home upload documents",
-			content : "home upload documents"
-		},
-		{
-			element :"#ui-homeTaxOrganizer",
-			title : "home tax organizer",
-			content : "home tax organizer"
-		},
-		{
-			element :"#ui-homeFileStatus",
-			title : "home file status",
-			content : "home file status"
-		},
-		{
-			element :"#ui-homeTicketStatus",
-			title : "home ticket status",
-			content : "home ticket status"
-		},
-		{
-			element :"#ui-taxLodgeStatus",
-			title : "lodge status",
-			content : "lodge status"
-		},
-		{
-			element :"#ui-requestList",
-			title : "request list",
-			content : "Hi,this is request list"
-		},
-		{
-			element :"#ui-menuList0",
-			title : "menu list",
-			content : "menu list"
+			element :"#ui-brandText",
+			title : "brand",
+			content : "Hi,this is the brand logo"
 		},
 		{
 			element :"#ui-userDetails",
@@ -231,34 +11,59 @@
 			content : "Hi,your details"
 		},
 		{
-			element :"#ui-brandText",
-			title : "brand",
-			content : "Hi,this is the brand logo"
+			element :"#ui-menuList0",
+			title : "menu list",
+			content : "menu list"
 		},
 		{
-			element :"#ui-taxYear",
-			title : "current tax financial year",
-			content : "Hi,your current tax financial status"
+			element :"#ui-requestList",
+			title : "request list",
+			content : "Hi,this is request list"
 		},
 		{
-			element :"#ui-fileStatus",
-			title : "current file status",
-			content : "Hi,your current file status"
+			element:"#ui-dashboard",
+			title :"This is your Dashboard",
+			content : "Hi,This is your Dashboard"
+		 },
+		 {
+			 element : "#ui-serviceActions",
+			 title : "performing actions",
+			 content : "performing actions like referrals"
+		  },
+		  {
+			 element : "#ui-createService",
+			 title : "create new sevice",
+			 content : "Hi,create your new service"
+		 },
+		 {
+			 element : "#ui-serviceTicket",
+			 title : "new ticket creation",
+			 content : "Hi,create new ticket"
+		 },
+		 {
+			 element :"#ui-serviceName",
+			 title : "tax ticket status",
+			 content : "Hi,your tax ticket status"
+		 },
+		 {
+			 element :"#ui-ticketStatus",
+			 title : "current ticket status",
+			 content : "Hi,your current ticket status"
+		 },
+		 {
+			 element :"#ui-fileStatus",
+			 title : "current file status",
+			 content : "Hi,your current file status"
+		 },
+		 {
+			element: "#ui-serviceRequest0",
+			title: "Service Requests",
+			content: "Your Service Request Button!"
 		},
 		{
-			element :"#ui-ticketStatus",
-			title : "current ticket status",
-			content : "Hi,your current ticket status"
-		},
-		{
-			element :"#ui-serviceName",
-			title : "tax ticket status",
-			content : "Hi,your tax ticket status"
-		},
-		{
-			element :"#ui-inviteMore",
-			title : "invite your friends,family etc",
-			content : "Hi Invite More"
+			element : ".ui-referrals",
+			title : "My Referrals Panel",
+			content : "Find all Information Related to Your Referrals"
 		},
 		{
 			element : "#ui-redeemReferrals",
@@ -266,35 +71,295 @@
 			content: "Hi,redeem amount made by referring"
 		},
 		{
-			element : "#ui-serviceTicket",
-			title : "new ticket creation",
-			content : "Hi,create new ticket"
+			element : "#ui-clientEmail",
+			title : "client email",
+			content : "Hi,this is your email"
+		},
+		{
+			element : "#ui-clientProfileImage",
+			title : "client profile image",
+			content : "Hi,this is your profile pic"
+		},
+		{
+			element : "#ui-clientInvitedStatus",
+			title : "client invited status",
+			content : "Hi,this is your invited status"
+		},
+		{
+			element : "#ui-clientSignedDate",
+			title : "client signed date",
+			content : "Hi,this is date u have signed"
+		},
+		{
+			element : "#ui-clientEarning",
+			title : "client earnings",
+			content : "Hi,this is your earnings"
+		},
+		{
+			element :"#ui-inviteMore",
+			title : "invite your friends,family etc",
+			content : "Hi Invite More"
+		},
+		{
+			element :"#ui-taxLodgeStatus",
+			title : "lodge status",
+			content : "lodge status"
+		},
+		{
+			element :"#ui-homeTicketStatus",
+			title : "home ticket status",
+			content : "home ticket status"
+		},
+		{
+			element :"#ui-homeFileStatus",
+			title : "home file status",
+			content : "home file status"
+		},
+		{
+			element :"#ui-homeTaxOrganizer",
+			title : "home tax organizer",
+			content : "home tax organizer"
+		},
+		{
+			element :"#ui-homeUploadDocuments",
+			title : "home upload documents",
+			content : "home upload documents"
+		},
+		{
+			element :"#ui-homeTaxDraft",
+			title : "home tax draft",
+			content : "home tax draft"
+		},
+		{
+			element :"#ui-homePaymentMade",
+			title : "home payment made",
+			content : "home payment made"
+		},
+		{
+			element :"#ui-homeFilingCompleted",
+			title : "home filing completed",
+			content : "home filing completed"
+		},
+		{
+			element :"#ui-homeDigitalTaxOrganizer",
+			title : "home digital tax organizer",
+			content : "home digital tax organizer"
+		},
+		{
+			element :"#ui-homePersonalInfo",
+			title : "home personal info",
+			content : "home personal info"
+		},
+		{
+			element :"#ui-homeResidentialInfo",
+			title : "home residential info",
+			content : "home residential info"
+		},
+		{
+			element :"#ui-homeEmploymentInfo",
+			title : "home employment info",
+			content : "home employment info"
+		},
+		{
+			element :"#ui-homeExpensesInfo",
+			title : "home expenses info",
+			content : "home expenses info"
+		},
+		{
+			element :"#ui-homeIncomeInfo",
+			title : "home income info",
+			content : "home income info"
+		},
+		{
+			element :"#ui-homeBankInfo",
+			title : "home bank info",
+			content : "home bank info"
+		},
+		{
+			element :"#ui-homeCurrentYearDocuments",
+			title : "home current year documents",
+			content : "home current year documents"
+		},
+		{
+			element :"#ui-homeRequestCallback",
+			title : "home RequestCallback",
+			content : "home RequestCallback"
+		},
+		{
+			element :"#ui-homeAskQuery",
+			title : "home AskQuery",
+			content : "home ui-homeAskQuery"
+		},
+		{
+			element :"#ui-messageAskQuery",
+			title : "message AskQuery",
+			content : "Hi,Ask a query"
+		},
+		{
+			element :".ui-messageTextArea",
+			title : "message Text Area",
+			content : "Hi,write something"
+		},
+		{
+			element :"#ui-messageReply",
+			title : "message reply",
+			content : "Hi,click this to reply"
+		},
+		{
+			element :"#ui-messageNotifications",
+			title : "message Received",
+			content : "Hi,this is notifications received"
+		},
+		{
+			element :"#ui-messageContent",
+			title : "message Received",
+			content : "Hi,this is message received from CRO"
+		},
+		{
+			element :"#ui-mydocumentsUploadedDocs",
+			title : "uploaded documents",
+			content : "Hi,this is uploaded documents"
+		},
+		{
+			element :"#ui-mydocumentsFileCount",
+			title : "uploaded file count",
+			content : "Hi,this is your uploaded file count"
+		},
+		{
+			element :"#ui-mydocumentsChooseFile",
+			title : "choose file to upload",
+			content : "Hi,choose file to upload like pdf"
+		},
+		{
+			element :"#ui-mydocumentsTaxOrganizer",
+			title : "your tax organizer",
+			content : "Hi,this is your tax organizer"
+		},
+		{
+			element :"#ui-taxdraftInfo",
+			title : "tax draft info",
+			content : "Hi,this is tax draft info"
+		},
+		{
+			element :"#ui-taxdraftFiles",
+			title : "tax draft files",
+			content : "Hi,this is your tax draft files"
+		},
+		{
+			element :"#ui-taxdraftReview",
+			title : "tax draft review",
+			content : "review tax draft"
+		},
+		{
+			element :"#ui-taxdraftDocumentsList0",
+			title : "tax draft document list",
+			content : "Hi,this is your tax draft document list"
+		},
+		{
+			element :"#ui-taxdraftRejected",
+			title : "tax draft rejected",
+			content : "Hi,this is your rejected draft"
+		},
+		{
+			element :"#ui-taxdraftWaiting",
+			title : "tax draft waiting for approval",
+			content : "Hi,this is your draft waiting for approval"
+		},
+		{
+			element :"#ui-taxdraftApproved",
+			title : "tax draft approved",
+			content : "Hi,this is approved draft"
+		},
+		{
+			element :"#ui-taxdraftApproved",
+			title : "approve draft for filing",
+			content : "Hi,approve draft for filing"
+		},
+		{
+			element :"#ui-taxdraftRequestChanges",
+			title : "tax draft Request Changes",
+			content : "Hi,tax draft Changes need to be made"
+		},
+		{
+			element :"#ui-invoiceInfo",
+			title : "your invoice info",
+			content : "Hi,your invoice info"
+		},
+		{
+			element :"#ui-taxdraftInvoiceTotal",
+			title : "your invoice total",
+			content : "Hi,your invoice total"
+		},
+		{
+			element :"#ui-invoiceCouponApply",
+			title : "this is invoice coupon if any",
+			content : "Hi,provide coupon if any"
+		},
+		{
+			element :"#ui-invoiceCheckBox",
+			title : "checkbox",
+			content : "Hi,please accept our's terms and conditions"
+		},
+		{
+			element :"#ui-invoiceCreditCardPay",
+			title : "credit card payment",
+			content : "Hi,pay using credit card"
+		},
+		{
+			element :"#ui-finaldocuments8879",
+			title : "final documents",
+			content : "Hi,this is the final documents"
+		},
+		{
+			element :"#ui-finaldocumentsFinalReturns",
+			title : "final returns",
+			content : "Hi,this is the final returns"
 		}
-		{
-			element : "#ui-createService",
-			title : "create new sevice",
-			content : "Hi,create your new service"
-		},
-		{
-		   element : "#ui-serviceActions",
-		   title : "performing actions",
-		   content : "performing actions like referrals"
-		},
-		{
-		   element:"#ui-dashboard",
-		   title :"This is your Dashboard",
-		   content : "Hi,This is your Dashboard"
-		},
+		
+		
+		
+			//{
+			//	element: "#ui-serviceRequest0",
+			//	title: "Service Requests",
+			//	content: "Your Service Request Button!"
+			//},
+			//{
+				//element : ".ui-referrals",
+				//title : "My Referrals Panel",
+				//content : "Find all Information Related to Your Referrals"
+			//},
+			
+			
+						
+			
+		],
+		'croDashboard' : [
 			{
-				element: "#ui-serviceRequest0",
-				title: "Service Requests",
-				content: "Your Service Request Button!"
+				element: "#ui-croDashboard",
+				title: "cro Dashboard",
+				content: "Hi,this is cro dashboard"
 			},
 			{
-				element : ".ui-referrals",
-				title : "My Referrals Panel",
-				content : "Find all Information Related to Your Referrals"
-			}
+				element: "#ui-croDashboardCalls",
+				title: "cro Dashboard calls",
+				content: "Hi,this is cro dashboard calls"
+			},
+			{
+				element: "#ui-croDashboardNotifications",
+				title: "cro Dashboard notifications",
+				content: "Hi,this is cro dashboard notifications"
+			},
+			{
+				element: "#ui-croDashboardMarkRead",
+				title: "cro Dashboard mark as read",
+				content: "Hi,this is cro dashboard mark as read"
+			},
+			{
+				element: "#ui-croDashboardMarkStar",
+				title: "cro Dashboard mark as star",
+				content: "Hi,this is cro dashboard mark as star"
+			},
+			
 		],
 		'userSteps' : [
 			{
@@ -302,5 +367,220 @@
 				title: "My Dashboard",
 				content: "Quickly go to dashboard from any screen!"
 			},
+			{
+				element: "#ui-detailsTicketInfo",
+				title: "ticket info",
+				content: "Hi,client ticket info"
+			},
+			{
+				element: "#ui-detailsTicketStatus",
+				title: "ticket status info",
+				content: "Hi,client ticket status info"
+			},
+			{
+				element: "#ui-detailsFileStatus",
+				title: "file status info",
+				content: "Hi,client file status info"
+			},
+			{
+				element: "#ui-detailsComposeMessage",
+				title: "message here",
+				content: "Hi,message here"
+			},
+			{
+				element: "#ui-detailsPrivate",
+				title: "private message",
+				content: "Hi,this is private message"
+			},
+			{
+				element: "#ui-detailsReplyMessage",
+				title: "reply to message",
+				content: "Hi,reply to message"
+			},
+			{
+				element: "#ui-detailsCroNotifications",
+				title: "CRO notifications",
+				content: "Hi,this is CRO notifications"
+			},
+			{
+				element: "#ui-detailsCroMessage",
+				title: "CRO message",
+				content: "Hi,this is CRO message"
+			},
+			{
+				element: "#ui-detailsclientDetails",
+				title: "client details",
+				content: "Hi,this is client details",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientName",
+				title: "client name",
+				content: "Hi,this is client name",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientMobile",
+				title: "client mobile",
+				content: "Hi,this is client mobile",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientImage",
+				title: "client profile",
+				content: "Hi,this is client profile",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientLocationDetails",
+				title: "client location details",
+				content: "Hi,this is client location details",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientLocation",
+				title: "client location ",
+				content: "Hi,this is client location",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTimezone",
+				title: "client timezone",
+				content: "Hi,this is client timezone",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientCurrency",
+				title: "client currency",
+				content: "Hi,this is client currency",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientCall",
+				title: "client call",
+				content: "Hi,this is client call",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientCreateTicket",
+				title: "client create ticket",
+				content: "Hi,this is client ticket creation",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTaxOrganizer",
+				title: "client tax organizer",
+				content: "Hi,this is client tax organizer",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTaxOrgImg",
+				title: "client tax organizer image",
+				content: "Hi,this is client tax organizer image",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTaxOrgDetails",
+				title: "client tax organizer details",
+				content: "Hi,this is client tax organizer details",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientDocsInfo",
+				title: "client document details",
+				content: "Hi,this is client document details",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientDocImage",
+				title: "client document image",
+				content: "Hi,this is client document image",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientDocCount",
+				title: "client document count",
+				content: "Hi,this is client document count",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTaxDraftInfo",
+				title: "client tax draft info",
+				content: "Hi,this is client tax draft info",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTaxDraftImage",
+				title: "client tax draft image",
+				content: "Hi,this is client tax draft image",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientTaxDraftCount",
+				title: "client tax draft count",
+				content: "Hi,this is client tax draft count",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientPaymentInfo",
+				title: "client payment info",
+				content: "Hi,this is client payment info",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientInvoiceInfo",
+				title: "client invoice info",
+				content: "Hi,this is client invoice info",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientInvoiceNo",
+				title: "client invoice no",
+				content: "Hi,this is client invoice no",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientInvoiceAmount",
+				title: "client invoice amount",
+				content: "Hi,this is client invoice amount",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientInvoiceStatus",
+				title: "client invoice status",
+				content: "Hi,this is client invoice status",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClientInvoiceEdit",
+				title: "client invoice edit",
+				content: "Hi,this is client invoice edit",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsWorkingFiles",
+				title: "client working files",
+				content: "Hi,this is client working files",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsWorkingFilesInfo",
+				title: "client working files info",
+				content: "Hi,this is client working files info",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClosedTicket",
+				title: "client closed ticket",
+				content: "Hi,this is client closed ticket",
+				placement : "left"
+			},
+			{
+				element: "#ui-detailsClosedTicketButton",
+				title: "client ticket button",
+				content: "Hi,this is client ticket button",
+				placement : "left"
+			}
+
 		]
 }

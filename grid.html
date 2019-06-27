@@ -34,7 +34,7 @@
                         <span ng-if="!column.isHTMLContent && !column.renderAsImg && !column.icon && !column.isImpotantIcon && !column.renderAsLink" 
                      	   ng-class="getColumnCls(column, data.status)"
                      	   ng-click="columnClick(column, data)">
-                     	   <span ng-if="!column.defaultValue">{{defaultRenderer(data, column.dataIndex, column.renderer)}}</span>
+                     	   <span ng-if="!column.defaultValue" id="ui-croDashboardClientName">{{defaultRenderer(data, column.dataIndex, column.renderer)}}</span>
                      	   <span ng-if="column.defaultValue" >{{column.defaultValue}}</span>
                      	</span>
                      	<a ng-if="column.renderAsLink" href="mailto:{{defaultRenderer(data, column.dataIndex, column.renderer)}}" style="color: #23527c;">{{defaultRenderer(data, column.dataIndex, column.renderer)}}</a>

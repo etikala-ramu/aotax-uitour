@@ -12,10 +12,10 @@
                 </div> -->
                 
                 <div class="row">
-                	<div class="col-md-9" style="margin-top: 4px;">
+                	<div class="col-md-9" style="margin-top: 4px;" id="ui-detailsTicketInfo">
                 		<h3>TICKET #{{ticketDetails.objectId}} - {{ticketDetails.serviceName}} - {{ticketDetails.financialYear}}
-                		<span><label class="text-center label label-primary" style="font-size:10px">{{ticketDetails.statusName}}{{sname}}</label></span>
-                		<span><label class="text-center label label-warning" style="font-size:10px">{{ticketDetails.fileStatusName}}{{fsname}}</label></span>
+                		<span><label class="text-center label label-primary" style="font-size:10px" id="ui-detailsTicketStatus">{{ticketDetails.statusName}}{{sname}}</label></span>
+                		<span><label class="text-center label label-warning" style="font-size:10px" id="ui-detailsFileStatus">{{ticketDetails.fileStatusName}}{{fsname}}</label></span>
                 		<span style="float: right;">
                 			<label class="text-center label" ng-class="(ticketDetails.invoice && ticketDetails.invoice.paidDate != null) ? 'label-success' : 'label-default' " style="font-size:10px">PAYMENT MADE</label>
                 		</span>
@@ -41,7 +41,7 @@
 				<!-- Begin Text Editor -->
 				
 				<div class="panel">
-				    <div class="panel-heading">
+				    <div class="panel-heading" id="ui-detailsComposeMessage">
 				        <h3 class="panel-title">Compose New Message</h3>
 				    </div>
 				    <div class="panel-body pad-btm">					    			
@@ -64,9 +64,9 @@
 								</span -->
 								<div class="checkbox display-inline-block">
 					                <input id="Private" class="magic-checkbox" type="checkbox" ng-click="isPrivate = !isPrivate">
-					                <label for="Private" style="padding-right: 10px !important;" data-toggle="tooltip" title="To send a private note">Private</label>
+					                <label for="Private" style="padding-right: 10px !important;" data-toggle="tooltip" title="To send a private note" id="ui-detailsPrivate">Private</label>
 					            </div>
-								<button class="btn btn-warning" ng-click="messageReplay()"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+								<button class="btn btn-warning" ng-click="messageReplay()" id="ui-detailsReplyMessage"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
 							</div>
 						</div>
 						<div class="col-md-12 pad-no" style="margin-top: 10px;" ng-show="toggleCCEmails">
@@ -85,13 +85,13 @@
                     			<span class="label label-default label label-primary" ng-if="mail.type == 'Q'">Query</span>
                     			<span class="label label-default label label-warning" ng-if="mail.type == 'E'">Escalate</span>
 				            </div>
-		                    <h4 class="panel-title">
+		                    <h4 class="panel-title" id="ui-detailsCroNotifications">
 	                        	<a href="javascript:void(0);" class="display-inline-block" title="{{mail.created | formatDate}}">{{mail.label}} {{mail.created | timeago}}</a>
 		                    </h4>
 		                </div>			
 		                <div class="panel-collapse collapse mail-body" ng-class="{in: activeCon == $index}">
 		                    <div class="panel-body">
-		                    	<div dynamichtml="mail.htmlContent" type="{{mail.type}}" callBackRequestTime="{{mail.callBackRequestTime}}" callBackTimezone="{{mail.callBackTimezone}}"></div>
+		                    	<div dynamichtml="mail.htmlContent" type="{{mail.type}}" callBackRequestTime="{{mail.callBackRequestTime}}" callBackTimezone="{{mail.callBackTimezone}}" id="ui-detailsCroMessage"></div>
 		                    </div>
 		                </div>
 		            </div>
@@ -99,28 +99,28 @@
 				
 				</div><!-- End Col-md-9-->	    
     				<div class="col-md-3 pull-sm-right">
-    					<div class="panel widget">
+    					<div class="panel widget" id="ui-detailsclientDetails">
 					                    <span ng-click="clientDetails()" data-toggle="tooltip" title=" View client details" style="cursor:pointer">
 					                    <div class="widget-header bg-aotax-black text-center" >
-					                        <h4 class="mar-no pad-top">{{ticketDetails.clientName}}</h4>
-					                        <h4 class="mar-no pad-top pad-btm">
+					                        <h4 class="mar-no pad-top" id="ui-detailsClientName">{{ticketDetails.clientName}}</h4>
+					                        <h4 class="mar-no pad-top pad-btm" id="ui-detailsClientMobile">
 					                        	{{ticketDetails.user.countryCode && ticketDetails.user.countryCode != 'undefined' ? '(' + ticketDetails.user.countryCode + ')' : ''}} {{ticketDetails.user.mobile}}
 					                        </h4>
 					                    </div>
 					                    </span>
 					                    <div class="widget-body" >
 											<img class="widget-img img-circle custome-profile-icon" src="https://www.gravatar.com/avatar/{{ticketDetails.user.avatar}}?d=404"
-		                        					onerror="renderInitial(this);" data-name="{{ticketDetails.clientName}}" />
-					                        <div class="list-group bg-trans mar-no">
-					                           <a class="list-group-item list-item-sm" >
+		                        					onerror="renderInitial(this);" data-name="{{ticketDetails.clientName}}" id="ui-detailsClientImage" />
+					                        <div class="list-group bg-trans mar-no" id="ui-detailsClientLocationDetails">
+					                           <a class="list-group-item list-item-sm" id="ui-detailsClientLocation">
 					                                <span class="label label-default pull-right" >{{clientdatainfo.STATE}}</span>
 					                                Location
 					                            </a>
-					                            <a class="list-group-item list-item-sm" href="#" >
+					                            <a class="list-group-item list-item-sm" href="#" id="ui-detailsClientTimezone">
 					                                <span class="label label-primary pull-right">{{clientdatainfo.TIMEZONE}}</span>
 					                                Time Zone
 					                                </a>
-					                            <a class="list-group-item list-item-sm" ng-click="setcurrency()" href="javascript:void(0);">
+					                            <a class="list-group-item list-item-sm" ng-click="setcurrency()" href="javascript:void(0);" id="ui-detailsClientCurrency">
 					                                 <span class="label label-default pull-right" ng-if="ticketDetails.currency == 'INR'">INR</span>
 					                                 <span class="label label-default pull-right" ng-if="!ticketDetails.currency || ticketDetails.currency == 'AUD'">AUD</span>
 													 Currency
@@ -129,8 +129,8 @@
 					                        
 					                    </div>
 					                    <div class="row text-center mar-btm">
-				                            <button class="btn btn-aot-info" ng-click="callToCustomer()">Call</button>
-				                            <button class="btn btn-aot-info" ng-click="creatTitcketPopup()" ng-show="cTicketAccess">Create Ticket</button>
+				                            <button class="btn btn-aot-info" ng-click="callToCustomer()" id="ui-detailsClientCall">Call</button>
+				                            <button class="btn btn-aot-info" ng-click="creatTitcketPopup()" ng-show="cTicketAccess" id="ui-detailsClientCreateTicket">Create Ticket</button>
 				                        </div>
 				                        <div class="row text-center mar-btm" ng-show="takeOwnerBtn">
 				                            <button class="btn btn-warning text-bold" ng-click="beforeclicktocall = true">Take Ownership</button>
@@ -160,11 +160,11 @@
 				        </div> -->
 				       
 				        <div class="panel">
-		                    <div class="panel-body text-center">
-		                    		<img src="./img/taxorganizer_icon.png" class="img-responsive">
+		                    <div class="panel-body text-center" id="ui-detailsClientTaxOrganizer">
+		                    		<img src="./img/taxorganizer_icon.png" class="img-responsive" id="ui-detailsClientTaxOrgImg">
 <!-- 		                        <p class="text-lg text-semibold mar-no text-main">Client Details</p>
  -->		                        <div class="row" style="margin-top: 20px">
-						            	<a class="btn btn-mint" href="/aotax/user/newTaxOrganizer.jsp?u={{ticketDetails.user.objectId}}&t={{ticketDetails.objectId}}" target="_blank">Client Details</a>
+						            	<a class="btn btn-mint" href="/aotax/user/newTaxOrganizer.jsp?u={{ticketDetails.user.objectId}}&t={{ticketDetails.objectId}}" target="_blank" id="ui-detailsClientTaxOrgDetails">Client Details</a>
 						            </div>
 						           <!--  <div class="row" style="margin-top: 15px">
 						            	<a href="javascript:void(0);" class="text-bold" ng-if="snapshot.OBJECTID" ng-click="viewOrg(snapshot.OBJECTID)" style="color: #337ab7;">Latest Snapshot</a><br>
@@ -174,17 +174,17 @@
 				        </div>
 				      
 				        <div class="panel">
-		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="fileModal = !fileModal">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="fileModal = !fileModal" id="ui-detailsClientDocsInfo">
 		                        <!-- <p class="text-lg text-semibold mar-no text-main">Documents Uploaded</p> -->
-		                        <img src="./img/documents_icon.png" class="img-responsive">
-		                        <p class="text-4x mar-no">{{filesCount}}</p>
+		                        <img src="./img/documents_icon.png" class="img-responsive" id="ui-detailsClientDocImage">
+		                        <p class="text-4x mar-no" id="ui-detailsClientDocCount">{{filesCount}}</p>
 		                    </div>
 				        </div>	
 				        <div class="panel">
-		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="draftmodal = !draftmodal">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="draftmodal = !draftmodal" id="ui-detailsClientTaxDraftInfo">
 		                        <!-- <p class="text-lg text-semibold mar-no text-main">Tax Drafts</p> -->
-		                        <img src="./img/taxdraft_icon.png" class="img-responsive">
-		                        <p class="text-4x mar-no">{{taxDraftCount}}</p>
+		                        <img src="./img/taxdraft_icon.png" class="img-responsive" id="ui-detailsClientTaxDraftImage">
+		                        <p class="text-4x mar-no" id="ui-detailsClientTaxDraftCount">{{taxDraftCount}}</p>
 		                    </div>
 				        </div>
 				        <!--commented as it is  not completed yet  -->
@@ -228,13 +228,13 @@
 		                    </div>
 				        </div>
 				        <div class="panel">
-		                    <div class="panel-body text-center">
+		                    <div class="panel-body text-center" id="ui-detailsClientPaymentInfo">
 		                		<img src="./img/paydetails_icon.jpg" class="img-responsive">
 <!-- 		                        <p class="text-lg text-semibold mar-no text-main">Payment Details</p>
- -->		                        <div class="row" style="margin-top: 20px">
-					            	<div ><strong>Invoice No: </strong> {{ticketDetails.invoice ? ticketDetails.invoice.objectId : '-'}}</div>
-					            	<div ><strong>Amount: </strong> {{ticketDetails.invoice ? 'AUD' + ticketDetails.invoice.totalPrice : '-'}}</div>
-					            	<div>
+ -->		                        <div class="row" style="margin-top: 20px" id="ui-detailsClientInvoiceInfo">
+					            	<div id="ui-detailsClientInvoiceNo"><strong>Invoice No: </strong> {{ticketDetails.invoice ? ticketDetails.invoice.objectId : '-'}}</div>
+					            	<div id="ui-detailsClientInvoiceAmount"><strong>Amount: </strong> {{ticketDetails.invoice ? 'AUD' + ticketDetails.invoice.totalPrice : '-'}}</div>
+					            	<div id="ui-detailsClientInvoiceStatus">
 					            		<strong>Status: </strong>
 					            		<span class="label label-danger" ng-if="ticketDetails.invoice && ticketDetails.invoice.paidDate == null">Payment Pending</span>
 					            		<span class="label label-success" ng-if="ticketDetails.invoice && ticketDetails.invoice.paidDate != null">Paid</span>
@@ -244,14 +244,14 @@
 		                        <div class="mar-top" ng-if="!ticketDetails.invoice">
 		                            <button class="btn btn-mint" ng-disabled="unAuthorizedCRO || taxDraftCount <= 0" ng-click="showGenerateInvoiceModal();">Generate Invoice</button>
 		                        </div>
-		                        <div class="mar-top" ng-if="ticketDetails.invoice != null">
+		                        <div class="mar-top" ng-if="ticketDetails.invoice != null" id="ui-detailsClientInvoiceEdit">
 		                        	<button class="btn btn-mint" ng-disabled="taxDraftCount <= 0" ng-click="showGenerateInvoiceModal();">{{ticketDetails.invoice.paidDate == null ? 'Edit' : 'View'}} Invoice</button>
 		                        </div>
 		                    </div>
 				        </div>
 				        <!-- Hiding Working files  -->
-				        <div class="panel">
-		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="workingpapaers = !workingpapaers">
+				        <div class="panel" id="ui-detailsWorkingFiles">
+		                    <div class="panel-body text-center" style="cursor: pointer;" ng-click="workingpapaers = !workingpapaers" id="ui-detailsWorkingFilesInfo>
 		                    	<span class="fa fa-2x fa-file-text-o"></span>
 		                    	<h4>Working files</h4>
 		                    </div>
@@ -265,11 +265,11 @@
 		                </div>
 		                
 				       	<div class="panel"
-				       		ng-show="ticketDetails.intStatus == 'FACO' || ticketDetails.intStatus == 'ITCO' || ticketDetails.intStatus == 'DRCO'"
+				       		ng-show="ticketDetails.intStatus == 'FACO' || ticketDetails.intStatus == 'ITCO' || ticketDetails.intStatus == 'DRCO'" id="ui-detailsClosedTicket"
 				       	>
 				       		<div class="panel-body text-center">
 					       		<button class="btn btn-danger"
-					       			ng-click="makeFilingComplete()"
+					       			ng-click="makeFilingComplete()" id="ui-detailsClosedTicketButton"
 					       		>
 					       		CLOSE TICKET
 					       		</button>
